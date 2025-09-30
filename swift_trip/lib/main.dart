@@ -11,9 +11,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'MAD Project',
       theme: ThemeData(
-        // This is the theme of your application.
+        // This is the theme of your applicatio`n.
         //
         // TRY THIS: Try running your application with "flutter run". You'll see
         // the application has a purple toolbar. Then, without quitting the app,
@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Project Demo Home Page'),
     );
   }
 }
