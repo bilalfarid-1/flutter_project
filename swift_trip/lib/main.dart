@@ -1,17 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:swift_trip/screen/login_screen.dart';
+import 'package:swift_trip/screen/signup_screen.dart';
 void main() {
   runApp(
-    const MyApp()
-  ,);
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
+     MaterialApp(
       title: 'MAD Project',
       home: Scaffold(
         body: Container(
@@ -24,38 +16,9 @@ class MyApp extends StatelessWidget {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter)
           ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            spacing: 20,
-            children: [
-              Image.asset('assets/images/logo1.png'),
-              Text('Plan Smarter. Travel Better'),
-                Form(
-                  child: Column(
-                    spacing: 20,
-                    children: [
-                      TextFormField(
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          hintText: 'Enter you Email',
-                        ),
-                      ),
-                      TextField(
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          hintText: 'Enter you Password',
-                        ),
-                      ),
-                      ElevatedButton(onPressed: (){}, child: Text('Login')),
-                      TextButton(onPressed: (){}, child: Text('Forgot Password')),
-                    ],
-                  ),
-                ),
-            ],
-          ),
+          child: SignupScreen()//LoginScreen(),
         ),
       ),
-    );
-  }
+    )
+  );
 }
-
