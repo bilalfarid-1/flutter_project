@@ -18,9 +18,11 @@ class MyApp extends StatelessWidget {
         body: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(colors: [
-              Colors.black,
+              const Color.fromARGB(255, 156, 207, 231),
               Colors.white
-            ])
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter)
           ),
           child: Column(
             children: [
