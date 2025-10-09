@@ -28,16 +28,26 @@ class MyApp extends StatelessWidget {
             children: [
               Image.asset('name'),
               Text('Plan Smarter. Travel Better'),
-              Container(
-                child: Column(
-                  children: [
-                    TextField(),
-                    TextField(),
-                    TextButton(onPressed: (){}, child: Text('Login')),
-                    ElevatedButton(onPressed: (){}, child: Text('Forgot Password')),
-                  ],
+                Form(
+                  child: Column(
+                    children: [
+                      TextFormField(
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          hintText: 'Enter you Email',
+                        ),
+                      ),
+                      TextField(
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          hintText: 'Enter you Password',
+                        ),
+                      ),
+                      ElevatedButton(onPressed: (){}, child: Text('Login')),
+                      TextButton(onPressed: (){}, child: Text('Forgot Password')),
+                    ],
+                  ),
                 ),
-              )
             ],
           ),
         ),
