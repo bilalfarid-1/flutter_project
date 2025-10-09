@@ -7,11 +7,11 @@ class LoginScreen extends StatefulWidget {
 
   @override
   State<LoginScreen> createState() {
-    return LoginScreenState();
+    return _LoginScreenState();
   }
 }
 
-class LoginScreenState extends State<LoginScreen> {
+class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(context) {
     return Column(
