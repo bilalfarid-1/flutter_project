@@ -4,6 +4,7 @@ void main() {
   runApp(
      MaterialApp(
       title: 'MAD Project',
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: Container(
           decoration: BoxDecoration(

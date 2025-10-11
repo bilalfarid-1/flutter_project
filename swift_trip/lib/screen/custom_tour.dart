@@ -5,20 +5,29 @@ class CustomTour extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Center(child: Text("Custom Tour Creation"))),
-      body: SafeArea(
+      body: Container(
+        decoration: BoxDecoration(
+            gradient: LinearGradient(colors: [
+              const Color.fromARGB(255, 156, 207, 231),
+              Colors.white
+            ])
+          ),
         child: Column(
           children: [
-            Padding(
-              padding: EdgeInsets.all(10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Text("Destination"),
-                  Text("Agency"),
-                  Text("Planning"),
-                  Text("Summary"),
-                  Text("Payment"),
-                ],
+            Container(
+              color: Colors.white,
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Text("Destination"),
+                    Text("Agency"),
+                    Text("Planning"),
+                    Text("Summary"),
+                    Text("Payment"),
+                  ],
+                ),
               ),
             ),
             Container(
@@ -32,15 +41,15 @@ class CustomTour extends StatelessWidget {
               child: Column(
                 children: [
                   Padding(
-                    padding: EdgeInsets.all(10),
+                    padding: EdgeInsets.only(top: 20),
                     child: Text("Select Your Journey", style: TextStyle(fontSize: 18),),
                   ),
                   Padding(
-                    padding: EdgeInsets.all(10),
+                    padding: EdgeInsets.only(top: 20,bottom: 15),
                     child: Text("Choose your departure and arrival cities", style: TextStyle(fontSize: 15),),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(25),
                     child: Card(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
