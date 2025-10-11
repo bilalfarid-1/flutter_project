@@ -6,15 +6,20 @@ class CustomTour extends StatelessWidget{
     
     return Scaffold(
       appBar: AppBar(
-        title: Text("Custom Tour Creation"),
+        title: Center(child: Text("Custom Tour Creation")),
       ),
-      body:  Container(
-        height: 100,
-        child: Container(
-          height: 100,
-          width: 100,
-          child: Text("data"))
+      body:  SafeArea(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Text("Destination"),
+            Text("Agency"),
+            Text("Planning"),
+            Text("Summary"),
+            Text("Payment")
+          ],
         ),
+      ),
     );
   }
 }
