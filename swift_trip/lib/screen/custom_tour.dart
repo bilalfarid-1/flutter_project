@@ -21,17 +21,28 @@ class CustomTour extends StatelessWidget {
                 ],
               ),
             ),
-            Column(
-              children: [
-                Padding(
-                  padding: EdgeInsets.all(10),
-                  child: Text("Select Your Journey"),
-                ),
-                Padding(
-                  padding: EdgeInsets.all(10),
-                  child: Text("Choose your departure and arrival cities"),
-                ),
-              ],
+            Container(
+              width: double.infinity,
+              decoration: BoxDecoration(
+            gradient: LinearGradient(colors: [
+              const Color.fromARGB(255, 156, 207, 231),
+              Colors.white
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter)
+          ),
+              child: Column(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Text("Select Your Journey", style: TextStyle(fontSize: 18),),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Text("Choose your departure and arrival cities", style: TextStyle(fontSize: 15),),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
