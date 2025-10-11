@@ -27,9 +27,7 @@ class CustomTour extends StatelessWidget {
             gradient: LinearGradient(colors: [
               const Color.fromARGB(255, 156, 207, 231),
               Colors.white
-            ],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter)
+            ])
           ),
               child: Column(
                 children: [
@@ -45,6 +43,7 @@ class CustomTour extends StatelessWidget {
                     padding: const EdgeInsets.all(10),
                     child: Card(
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
                             padding: const EdgeInsets.all(10),
@@ -75,7 +74,21 @@ class CustomTour extends StatelessWidget {
                         ],
                       ),
                     ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: ElevatedButton(onPressed: (){},
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      backgroundColor: Colors.blueAccent
+                    ), child: 
+                      Padding(
+                        padding: const EdgeInsets.only(top: 15,bottom: 15,left: 50,right: 50),
+                        child: Text("Continue", style: TextStyle(),),
+                      )
+                    ),
                   )
+
                 ],
               ),
             ),
