@@ -41,6 +41,41 @@ class CustomTour extends StatelessWidget {
                     padding: EdgeInsets.all(10),
                     child: Text("Choose your departure and arrival cities", style: TextStyle(fontSize: 15),),
                   ),
+                  Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Card(
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Text("From",style: TextStyle(fontWeight: FontWeight.bold),),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: TextField(
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(),
+                                hintText: "Departure City"
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Text("To",style: TextStyle(fontWeight: FontWeight.bold),),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: TextField(
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(),
+                                hintText: "Arrival City"
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  )
                 ],
               ),
             ),
