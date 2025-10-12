@@ -33,6 +33,24 @@ class _agency extends State<agency> {
                       style: TextStyle(fontSize: 15),
                     ),
                   ),
+                  Card(
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Icon(Icons.account_circle, size: 50),
+                              Text("Mountain \nAdventures"),
+                              Text("Rs\n5000"),
+                          
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  )
           ],
         ),
       ),

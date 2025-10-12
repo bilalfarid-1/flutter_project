@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:swift_trip/screen/AppBar.dart';
+import 'package:swift_trip/screen/agency.dart';
 
 class CustomTour extends StatefulWidget {
   CustomTour({super.key});
@@ -12,107 +13,112 @@ class _CustomTour extends State<CustomTour> {
   Widget build(BuildContext context) {
     return Scaffold(
       
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [const Color.fromARGB(255, 156, 207, 231), Colors.white],
-          ),
-        ),
-        child: Column(
-          
-          children: [
-            appBar(),
-            Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    const Color.fromARGB(255, 156, 207, 231),
-                    Colors.white,
-                  ],
-                ),
-              ),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(top: 20),
-                    child: Text(
-                      "Select Your Journey",
-                      style: TextStyle(fontSize: 18),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 20, bottom: 15),
-                    child: Text(
-                      "Choose your departure and arrival cities",
-                      style: TextStyle(fontSize: 15),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(25),
-                    child: Card(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(10),
-                            child: Text(
-                              "From",
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(10),
-                            child: TextField(
-                              decoration: InputDecoration(
-                                border: OutlineInputBorder(),
-                                hintText: "Departure City",
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(10),
-                            child: Text(
-                              "To",
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(10),
-                            child: TextField(
-                              decoration: InputDecoration(
-                                border: OutlineInputBorder(),
-                                hintText: "Arrival City",
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        foregroundColor: Colors.white,
-                        backgroundColor: Colors.blueAccent,
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                          top: 15,
-                          bottom: 15,
-                          left: 50,
-                          right: 50,
-                        ),
-                        child: Text("Continue", style: TextStyle()),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+      body: SafeArea(
+        child: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [const Color.fromARGB(255, 156, 207, 231), Colors.white],
             ),
-          ],
+          ),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                appBar(),
+                Container(
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        const Color.fromARGB(255, 156, 207, 231),
+                        Colors.white,
+                      ],
+                    ),
+                  ),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(top: 20),
+                        child: Text(
+                          "Select Your Journey",
+                          style: TextStyle(fontSize: 18),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(top: 20, bottom: 15),
+                        child: Text(
+                          "Choose your departure and arrival cities",
+                          style: TextStyle(fontSize: 15),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(25),
+                        child: Card(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(10),
+                                child: Text(
+                                  "From",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(10),
+                                child: TextField(
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(),
+                                    hintText: "Departure City",
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(10),
+                                child: Text(
+                                  "To",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(10),
+                                child: TextField(
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(),
+                                    hintText: "Arrival City",
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(context,MaterialPageRoute(builder: (context) => agency()));
+                          },
+                          style: ElevatedButton.styleFrom(
+                            foregroundColor: Colors.white,
+                            backgroundColor: Colors.blueAccent,
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                              top: 15,
+                              bottom: 15,
+                              left: 50,
+                              right: 50,
+                            ),
+                            child: Text("Continue", style: TextStyle()),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );

@@ -17,25 +17,28 @@ class appBar extends StatelessWidget{
                   style: TextStyle(fontSize: 22),
                 ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  TextButton(onPressed: () {
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => CustomTour()));
-                  }, child: Text("Destination", style: TextStyle(fontSize: 16))),
-                  TextButton(onPressed: () {
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => agency()));
-                  }, child: Text("Agency", style: TextStyle(fontSize: 16))),
-                  TextButton(onPressed: () {
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => CustomTour()));
-                  }, child: Text("Planning", style: TextStyle(fontSize: 16))),
-                  TextButton(onPressed: () {
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => CustomTour()));
-                  }, child: Text("Summary", style: TextStyle(fontSize: 16))),
-                  TextButton(onPressed: () {
-                    
-                  }, child: Text("Payment", style: TextStyle(fontSize: 16))),
-                ],
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    TextButton(onPressed: () {
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => CustomTour()));
+                    }, child: Text("Destination", style: TextStyle(fontSize: 16))),
+                    TextButton(onPressed: () {
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => agency()));
+                    }, child: Text("Agency", style: TextStyle(fontSize: 16))),
+                    TextButton(onPressed: () {
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => CustomTour()));
+                    }, child: Text("Planning", style: TextStyle(fontSize: 16))),
+                    TextButton(onPressed: () {
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => CustomTour()));
+                    }, child: Text("Summary", style: TextStyle(fontSize: 16))),
+                    TextButton(onPressed: () {
+                      
+                    }, child: Text("Payment", style: TextStyle(fontSize: 16))),
+                  ],
+                ),
               ),
             ],
           ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:swift_trip/screen/agency.dart';
+import 'package:swift_trip/screen/custom_tour.dart';
 void main() {
   runApp(
      MaterialApp(
@@ -15,7 +15,7 @@ void main() {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter)
           ),
-          child: agency()//LoginScreen(),
+          child: CustomTour(),
         ),
       ),
     )
