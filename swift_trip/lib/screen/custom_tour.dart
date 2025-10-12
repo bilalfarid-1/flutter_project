@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 
-class CustomTour extends StatelessWidget {
+class CustomTour extends StatefulWidget{
+  CustomTour({super.key});
+  @override
+  _CustomTour createState()=> _CustomTour();
+}
+
+class _CustomTour extends State<CustomTour> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
