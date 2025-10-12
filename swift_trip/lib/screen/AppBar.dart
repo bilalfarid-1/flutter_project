@@ -18,11 +18,21 @@ class appBar extends StatelessWidget{
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Text("Destination", style: TextStyle(fontSize: 16)),
-                  Text("Agency", style: TextStyle(fontSize: 16)),
-                  Text("Planning", style: TextStyle(fontSize: 16)),
-                  Text("Summary", style: TextStyle(fontSize: 16)),
-                  Text("Payment", style: TextStyle(fontSize: 16)),
+                  TextButton(onPressed: () {
+                    
+                  }, child: Text("Destination", style: TextStyle(fontSize: 16))),
+                  TextButton(onPressed: () {
+                    
+                  }, child: Text("Agency", style: TextStyle(fontSize: 16))),
+                  TextButton(onPressed: () {
+                    
+                  }, child: Text("Planning", style: TextStyle(fontSize: 16))),
+                  TextButton(onPressed: () {
+                    
+                  }, child: Text("Summary", style: TextStyle(fontSize: 16))),
+                  TextButton(onPressed: () {
+                    
+                  }, child: Text("Payment", style: TextStyle(fontSize: 16))),
                 ],
               ),
             ],
