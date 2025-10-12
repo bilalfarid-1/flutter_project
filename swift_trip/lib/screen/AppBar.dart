@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:swift_trip/screen/agency.dart';
+import 'package:swift_trip/screen/custom_tour.dart';
 
 class appBar extends StatelessWidget{
   @override
@@ -19,16 +21,16 @@ class appBar extends StatelessWidget{
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   TextButton(onPressed: () {
-                    
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => CustomTour()));
                   }, child: Text("Destination", style: TextStyle(fontSize: 16))),
                   TextButton(onPressed: () {
-                    
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => agency()));
                   }, child: Text("Agency", style: TextStyle(fontSize: 16))),
                   TextButton(onPressed: () {
-                    
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => CustomTour()));
                   }, child: Text("Planning", style: TextStyle(fontSize: 16))),
                   TextButton(onPressed: () {
-                    
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => CustomTour()));
                   }, child: Text("Summary", style: TextStyle(fontSize: 16))),
                   TextButton(onPressed: () {
                     
