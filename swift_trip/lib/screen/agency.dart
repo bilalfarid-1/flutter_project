@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:swift_trip/screen/AppBar.dart';
+import 'package:swift_trip/screen/custom_tour.dart';
 
 class agency extends StatefulWidget {
   @override
@@ -33,23 +34,40 @@ class _agency extends State<agency> {
                       style: TextStyle(fontSize: 15),
                     ),
                   ),
-                  Card(
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Icon(Icons.account_circle, size: 50),
-                              Text("Mountain \nAdventures"),
-                              Text("Rs\n5000"),
-                          
-                            ],
-                          ),
-                        )
-                      ],
+                  Padding(
+                    padding: const EdgeInsets.all(15),
+                    child: Card(
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Icon(Icons.account_circle, size: 50),
+                                Text("Mountain \nAdventures"),
+                                Text("Rs\n5000"),
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
                     ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.pushReplacement(context, MaterialPageRoute(builder:  (context) => CustomTour()));
+                        },
+                        child: Text("Back"),
+                      ),
+                      ElevatedButton(
+                        onPressed: () {},
+                        child: Text("Select"),
+                      ),
+                    ],
                   )
           ],
         ),
