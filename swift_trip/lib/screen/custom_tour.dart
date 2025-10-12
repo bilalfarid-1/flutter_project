@@ -1,58 +1,52 @@
 import 'package:flutter/material.dart';
+import 'package:swift_trip/screen/AppBar.dart';
 
-class CustomTour extends StatefulWidget{
+class CustomTour extends StatefulWidget {
   CustomTour({super.key});
   @override
-  _CustomTour createState()=> _CustomTour();
+  _CustomTour createState() => _CustomTour();
 }
 
 class _CustomTour extends State<CustomTour> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Center(child: Text("Custom Tour Creation"))),
+      
       body: Container(
         decoration: BoxDecoration(
-            gradient: LinearGradient(colors: [
-              const Color.fromARGB(255, 156, 207, 231),
-              Colors.white
-            ])
+          gradient: LinearGradient(
+            colors: [const Color.fromARGB(255, 156, 207, 231), Colors.white],
           ),
+        ),
         child: Column(
+          
           children: [
-            Container(
-              color: Colors.white,
-              child: Padding(
-                padding: const EdgeInsets.all(10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Text("Destination"),
-                    Text("Agency"),
-                    Text("Planning"),
-                    Text("Summary"),
-                    Text("Payment"),
-                  ],
-                ),
-              ),
-            ),
+            appBar(),
             Container(
               width: double.infinity,
               decoration: BoxDecoration(
-            gradient: LinearGradient(colors: [
-              const Color.fromARGB(255, 156, 207, 231),
-              Colors.white
-            ])
-          ),
+                gradient: LinearGradient(
+                  colors: [
+                    const Color.fromARGB(255, 156, 207, 231),
+                    Colors.white,
+                  ],
+                ),
+              ),
               child: Column(
                 children: [
                   Padding(
                     padding: EdgeInsets.only(top: 20),
-                    child: Text("Select Your Journey", style: TextStyle(fontSize: 18),),
+                    child: Text(
+                      "Select Your Journey",
+                      style: TextStyle(fontSize: 18),
+                    ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 20,bottom: 15),
-                    child: Text("Choose your departure and arrival cities", style: TextStyle(fontSize: 15),),
+                    padding: EdgeInsets.only(top: 20, bottom: 15),
+                    child: Text(
+                      "Choose your departure and arrival cities",
+                      style: TextStyle(fontSize: 15),
+                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(25),
@@ -62,27 +56,33 @@ class _CustomTour extends State<CustomTour> {
                         children: [
                           Padding(
                             padding: const EdgeInsets.all(10),
-                            child: Text("From",style: TextStyle(fontWeight: FontWeight.bold),),
+                            child: Text(
+                              "From",
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
                           ),
                           Padding(
                             padding: const EdgeInsets.all(10),
                             child: TextField(
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(),
-                                hintText: "Departure City"
+                                hintText: "Departure City",
                               ),
                             ),
                           ),
                           Padding(
                             padding: const EdgeInsets.all(10),
-                            child: Text("To",style: TextStyle(fontWeight: FontWeight.bold),),
+                            child: Text(
+                              "To",
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
                           ),
                           Padding(
                             padding: const EdgeInsets.all(10),
                             child: TextField(
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(),
-                                hintText: "Arrival City"
+                                hintText: "Arrival City",
                               ),
                             ),
                           ),
@@ -92,18 +92,23 @@ class _CustomTour extends State<CustomTour> {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(10),
-                    child: ElevatedButton(onPressed: (){},
-                    style: ElevatedButton.styleFrom(
-                      foregroundColor: Colors.white,
-                      backgroundColor: Colors.blueAccent
-                    ), child: 
-                      Padding(
-                        padding: const EdgeInsets.only(top: 15,bottom: 15,left: 50,right: 50),
-                        child: Text("Continue", style: TextStyle(),),
-                      )
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        foregroundColor: Colors.white,
+                        backgroundColor: Colors.blueAccent,
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                          top: 15,
+                          bottom: 15,
+                          left: 50,
+                          right: 50,
+                        ),
+                        child: Text("Continue", style: TextStyle()),
+                      ),
                     ),
-                  )
-
+                  ),
                 ],
               ),
             ),
