@@ -11,7 +11,30 @@ class _agency extends State<agency> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        child: appBar()
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [const Color.fromARGB(255, 156, 207, 231), Colors.white],
+          ),
+        ),
+        child: Column(
+          children: [
+            appBar(),
+            Padding(
+                    padding: EdgeInsets.only(top: 20),
+                    child: Text(
+                      "Choose Your Travel Partner",
+                      style: TextStyle(fontSize: 18),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 20, bottom: 15),
+                    child: Text(
+                      "Select from our trusted travel agencies",
+                      style: TextStyle(fontSize: 15),
+                    ),
+                  ),
+          ],
+        ),
       ),
     );
   }
