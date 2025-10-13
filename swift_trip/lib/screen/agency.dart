@@ -51,6 +51,7 @@ class _Agency extends State<Agency> {
                         ],
                       ),
                     ),
+<<<<<<< HEAD
                   ],
                 ),
               ),
@@ -70,6 +71,24 @@ class _Agency extends State<Agency> {
                 ElevatedButton(onPressed: () {}, child: Text("Select")),
               ],
             ),
+=======
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.pushReplacement(context, MaterialPageRoute(builder:  (context) => destination()));
+                        },
+                        child: Text("Back"),
+                      ),
+                      ElevatedButton(
+                        onPressed: () {},
+                        child: Text("Select"),
+                      ),
+                    ],
+                  )
+>>>>>>> e280f3fc1b716e7b6c026e21f57e0976481e7452
           ],
         ),
       ),
