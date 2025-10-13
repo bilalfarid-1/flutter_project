@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class DayViseCard extends StatelessWidget {
+  const DayViseCard({super.key});
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -13,23 +14,48 @@ class DayViseCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("Day 1", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+              Text(
+                "Day 1",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
               SizedBox(height: 8),
-              Text("Meals: Breakfast", style: TextStyle(fontWeight: FontWeight.w600)),
+              Text(
+                "Meals: Breakfast",
+                style: TextStyle(fontWeight: FontWeight.w600),
+              ),
               SizedBox(height: 12),
-              Text("Activities", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+              Text(
+                "Activities",
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
               activityTile("Shangrila Lake Visit", "3 hrs", "Rs. 5,000"),
               activityTile("Mountain Hiking", "5 hrs", "Rs. 5,000"),
               activityTile("Photography Tour", "4 hrs", "Rs. 6,000"),
               SizedBox(height: 12),
-              Text("Add Activity", style: TextStyle(fontWeight: FontWeight.bold)),
+              Text(
+                "Add Activity",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
               SizedBox(height: 8),
               activityTile("Cultural Village Visit", "2 hrs", "Rs. 3,000"),
               SizedBox(height: 12),
-              Text("Accommodation", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-              accommodationTile("Mountain View Resort", "Rs. 15,000/night", 4.6, false),
+              Text(
+                "Accommodation",
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
+              accommodationTile(
+                "Mountain View Resort",
+                "Rs. 15,000/night",
+                4.6,
+                false,
+              ),
               accommodationTile("Comfort Inn", "Rs. 20,000/night", 4.9, false),
-              accommodationTile("Luxury Palace", "Rs. 25,000/night", 4.8, false),
+              accommodationTile(
+                "Luxury Palace",
+                "Rs. 25,000/night",
+                4.8,
+                false,
+              ),
             ],
           ),
         ),
@@ -46,11 +72,18 @@ class DayViseCard extends StatelessWidget {
     );
   }
 
-  Widget accommodationTile(String name, String cost, double rating, bool isSelected) {
+  Widget accommodationTile(
+    String name,
+    String cost,
+    double rating,
+    bool isSelected,
+  ) {
     return Container(
       decoration: BoxDecoration(
         color: isSelected ? Colors.blue.shade50 : null,
-        border: Border.all(color: isSelected ? Colors.blue : Colors.grey.shade300),
+        border: Border.all(
+          color: isSelected ? Colors.blue : Colors.grey.shade300,
+        ),
         borderRadius: BorderRadius.circular(8),
       ),
       margin: EdgeInsets.symmetric(vertical: 6),
