@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:swift_trip/screen/AppBar.dart';
-import 'package:swift_trip/screen/custom_tour.dart';
+import 'package:swift_trip/screen/destination.dart';
 
 class agency extends StatefulWidget {
   @override
