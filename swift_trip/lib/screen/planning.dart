@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:swift_trip/screen/AppBar.dart';
-// import 'ArrivalDayCard.dart';
+import 'package:swift_trip/ArrivalDayCard.dart';
 // import 'DayOneCard.dart';
 // import 'BottomButtons.dart';
 
@@ -26,7 +26,7 @@ class _PlanningScreenState extends State<PlanningScreen> {
           child: Column(
             children: [
               appBar(),
-              // ArrivalDayCard(),
+              ArrivalDayCard(),
               // DayOneCard(),
               // BottomButtons(),
             ],
