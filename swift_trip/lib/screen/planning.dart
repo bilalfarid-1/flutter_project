@@ -26,8 +26,37 @@ class _PlanningScreenState extends State<PlanningScreen> {
           child: Column(
             children: [
               appBar(),
+
+              Container(
+                width: double.infinity,
+                padding: EdgeInsets.symmetric(vertical: 24, horizontal: 16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Plan Your Journey",
+                      style: TextStyle(
+                        fontSize: 26,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black87,
+                      ),
+                    ),
+                    SizedBox(height: 8),
+                    Text(
+                      "Create your day-by-day itinerary",
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.black54,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
               ArrivalDayCard(),
+
               DayViseCard(),
+
               BottomButtons(),
             ],
           ),
