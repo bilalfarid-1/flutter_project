@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:swift_trip/screen/agency.dart';
 import 'package:swift_trip/screen/destination.dart';
+import 'package:swift_trip/screen/planning.dart';
 
 class appBar extends StatelessWidget{
   @override
@@ -29,7 +30,7 @@ class appBar extends StatelessWidget{
                       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => agency()));
                     }, child: Text("Agency", style: TextStyle(fontSize: 16))),
                     TextButton(onPressed: () {
-                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => CustomTour()));
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => PlanningScreen()));
                     }, child: Text("Planning", style: TextStyle(fontSize: 16))),
                     TextButton(onPressed: () {
                       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => CustomTour()));
