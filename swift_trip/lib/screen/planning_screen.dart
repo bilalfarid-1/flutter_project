@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:swift_trip/screen/AppBar.dart';
+import 'package:swift_trip/screen/Appbar.dart';
 import 'package:swift_trip/ArrivalDayCard.dart';
 import 'package:swift_trip/DayViseCard.dart';
 import 'package:swift_trip/BottomButtons.dart';
@@ -13,7 +13,7 @@ class _PlanningScreenState extends State<PlanningScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(preferredSize: Size.fromHeight(100), child: appBar()),
+      appBar: PreferredSize(preferredSize: Size.fromHeight(100), child: Appbar()),
       body: Container(
         height: double.infinity,
         decoration: BoxDecoration(

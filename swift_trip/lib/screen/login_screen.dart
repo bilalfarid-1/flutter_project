@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:swift_trip/screen/destination.dart';
 
 class LoginScreen extends StatefulWidget {
-   LoginScreen({super.key});
+   const LoginScreen({super.key});
 
   @override
   State<LoginScreen> createState() {
@@ -36,7 +36,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               ElevatedButton(onPressed: () {
-                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => destination()));
+                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => CustomTour()));
               }, child: Text('Login')),
               TextButton(onPressed: () {}, child: Text('Forgot Password')),
               Text("Don't have Account? Sign up"),

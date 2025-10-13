@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:swift_trip/screen/AppBar.dart';
+import 'package:swift_trip/screen/Appbar.dart';
 import 'package:swift_trip/screen/agency.dart';
 
-class destination extends StatefulWidget {
-  destination({super.key});
+class CustomTour extends StatefulWidget {
+  const CustomTour({super.key});
   @override
-  _destination createState() => _destination();
+  State<CustomTour>createState() => _CustomTourState();
 }
 
-class _destination extends State<destination> {
+class _CustomTourState extends State<CustomTour> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +22,7 @@ class _destination extends State<destination> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              appBar(),
+              Appbar(),
               Column(
                   children: [
                     Padding(
@@ -85,7 +85,7 @@ class _destination extends State<destination> {
                       padding: const EdgeInsets.all(10),
                       child: ElevatedButton(
                         onPressed: () {
-                          Navigator.push(context,MaterialPageRoute(builder: (context) => agency()));
+                          Navigator.push(context,MaterialPageRoute(builder: (context) => Agency()));
                         },
                         style: ElevatedButton.styleFrom(
                           foregroundColor: Colors.white,

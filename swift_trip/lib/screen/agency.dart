@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:swift_trip/screen/AppBar.dart';
 import 'package:swift_trip/screen/destination.dart';
 
-class agency extends StatefulWidget {
+class Agency extends StatefulWidget {
+  const Agency({super.key});
   @override
-  _agency createState() => _agency();
+  _Agency createState() => _Agency();
 }
 
-class _agency extends State<agency> {
+class _Agency extends State<Agency> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

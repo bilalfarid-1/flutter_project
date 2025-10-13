@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class BottomButtons extends StatelessWidget {
+  const BottomButtons({super.key});
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -11,7 +12,9 @@ class BottomButtons extends StatelessWidget {
             onPressed: () {},
             style: OutlinedButton.styleFrom(
               side: BorderSide(color: Colors.blue, width: 1.5),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
+              ),
             ),
             child: Text("+ Add Next Day", style: TextStyle(color: Colors.blue)),
           ),
@@ -29,10 +32,11 @@ class BottomButtons extends StatelessWidget {
               ),
               ElevatedButton(
                 onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
+                child: Text(
+                  "Continue →",
+                  style: TextStyle(color: Colors.white),
                 ),
-                child: Text("Continue →", style: TextStyle(color: Colors.white)),
               ),
             ],
           ),
