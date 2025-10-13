@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:swift_trip/screen/AppBar.dart';
 import 'package:swift_trip/ArrivalDayCard.dart';
-// import 'DayOneCard.dart';
+import 'package:swift_trip/DayViseCard.dart';
 // import 'BottomButtons.dart';
 
 class PlanningScreen extends StatefulWidget {
@@ -27,7 +27,7 @@ class _PlanningScreenState extends State<PlanningScreen> {
             children: [
               appBar(),
               ArrivalDayCard(),
-              // DayOneCard(),
+              DayViseCard(),
               // BottomButtons(),
             ],
           ),
