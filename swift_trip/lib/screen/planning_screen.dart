@@ -13,6 +13,7 @@ class _PlanningScreenState extends State<PlanningScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: PreferredSize(preferredSize: Size.fromHeight(100), child: appBar()),
       body: Container(
         height: double.infinity,
         decoration: BoxDecoration(
@@ -22,10 +23,11 @@ class _PlanningScreenState extends State<PlanningScreen> {
             end: Alignment.bottomCenter,
           ),
         ),
+        
         child: SingleChildScrollView(
           child: Column(
             children: [
-              appBar(),
+              // appBar(),
 
               Container(
                 width: double.infinity,
