@@ -11,65 +11,126 @@ class _agency extends State<agency> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: PreferredSize(preferredSize: Size.fromHeight(100), child: appBar()),
       body: Container(
+        height: double.infinity,
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [const Color.fromARGB(255, 156, 207, 231), Colors.white],
           ),
         ),
-        child: Column(
-          children: [
-            appBar(),
-            Padding(
-                    padding: EdgeInsets.only(top: 20),
-                    child: Text(
-                      "Choose Your Travel Partner",
-                      style: TextStyle(fontSize: 18),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                      padding: EdgeInsets.only(top: 20),
+                      child: Text(
+                        "Choose Your Travel Partner",
+                        style: TextStyle(fontSize: 18),
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 20, bottom: 15),
-                    child: Text(
-                      "Select from our trusted travel agencies",
-                      style: TextStyle(fontSize: 15),
+                    Padding(
+                      padding: EdgeInsets.only(top: 20, bottom: 15),
+                      child: Text(
+                        "Select from our trusted travel agencies",
+                        style: TextStyle(fontSize: 15),
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(15),
-                    child: Card(
+                    Padding(
+                      padding: const EdgeInsets.all(15),
                       child: Column(
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.all(10),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Icon(Icons.account_circle, size: 50),
-                                Text("Mountain \nAdventures"),
-                                Text("Rs\n5000"),
-                              ],
+                          Card(
+                            child: Padding(
+                              padding: const EdgeInsets.all(15),
+                              child: Column(
+                                children: [
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                    children: [
+                                      Icon(Icons.add_a_photo, size: 50),
+                                      Text("Mountain \nAdventures"),
+                                      Text("Rs\n5000"),
+                                    ],
+                                  ),
+                                  Text("⭐ 4.8 (200 reviews)"),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Container(
+                                      width: 300,
+                                      child: GridView(gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
+                                        crossAxisCount: 2,
+                                        childAspectRatio: 5,
+                                      ),
+                                        shrinkWrap: true,
+                                      children: [
+                                          Card(child: Center(child: Text("Mountain Tours"))),
+                                          Card(child: Center(child: Text("Adventure Travels"))),
+                                          Card(child: Center(child: Text("Photography"))),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                          )
+                          ),
+                        
+                          Card(
+                            child: Padding(
+                              padding: const EdgeInsets.all(15),
+                              child: Column(
+                                children: [
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                    children: [
+                                      Icon(Icons.add_a_photo, size: 50),
+                                      Text("City \nExplorers"),
+                                      Text("Rs\n4000"),
+                                    ],
+                                  ),
+                                  Text("⭐ 4.6 (150 reviews)"),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Container(
+                                      width: 300,
+                                      child: GridView(gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
+                                        crossAxisCount: 2,
+                                        childAspectRatio: 5,
+                                      ),
+                                        shrinkWrap: true,
+                                      children: [
+                                          Card(child: Center(child: Text("City Tours"))),
+                                          Card(child: Center(child: Text("Cultural Experiences"))),
+                                          Card(child: Center(child: Text("Food & Dining"))),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                     ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      ElevatedButton(
-                        onPressed: () {
-                          Navigator.pushReplacement(context, MaterialPageRoute(builder:  (context) => destination()));
-                        },
-                        child: Text("Back"),
-                      ),
-                      ElevatedButton(
-                        onPressed: () {},
-                        child: Text("Select"),
-                      ),
-                    ],
-                  )
-          ],
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.pushReplacement(context, MaterialPageRoute(builder:  (context) => destination()));
+                          },
+                          child: Text("Back"),
+                        ),
+                        ElevatedButton(
+                          onPressed: () {},
+                          child: Text("Select"),
+                        ),
+                      ],
+                    )
+            ],
+          ),
         ),
       ),
     );
