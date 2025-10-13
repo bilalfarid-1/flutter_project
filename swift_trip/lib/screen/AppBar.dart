@@ -24,7 +24,7 @@ class appBar extends StatelessWidget{
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     TextButton(onPressed: () {
-                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => CustomTour()));
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => destination()));
                     }, child: Text("Destination", style: TextStyle(fontSize: 16))),
                     TextButton(onPressed: () {
                       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => agency()));
@@ -33,7 +33,6 @@ class appBar extends StatelessWidget{
                       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => PlanningScreen()));
                     }, child: Text("Planning", style: TextStyle(fontSize: 16))),
                     TextButton(onPressed: () {
-                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => CustomTour()));
                     }, child: Text("Summary", style: TextStyle(fontSize: 16))),
                     TextButton(onPressed: () {
                       

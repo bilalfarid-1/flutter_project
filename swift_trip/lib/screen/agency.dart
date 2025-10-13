@@ -59,7 +59,7 @@ class _agency extends State<agency> {
                     children: [
                       ElevatedButton(
                         onPressed: () {
-                          Navigator.pushReplacement(context, MaterialPageRoute(builder:  (context) => CustomTour()));
+                          Navigator.pushReplacement(context, MaterialPageRoute(builder:  (context) => destination()));
                         },
                         child: Text("Back"),
                       ),
