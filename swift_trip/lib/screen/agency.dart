@@ -12,7 +12,7 @@ class _Agency extends State<Agency> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(preferredSize: Size.fromHeight(100), child: appBar()),
+      appBar: PreferredSize(preferredSize: Size.fromHeight(100), child: Appbar()),
       body: Container(
         height: double.infinity,
         decoration: BoxDecoration(
@@ -120,7 +120,7 @@ class _Agency extends State<Agency> {
                       children: [
                         ElevatedButton(
                           onPressed: () {
-                            Navigator.pushReplacement(context, MaterialPageRoute(builder:  (context) => destination()));
+                            Navigator.pushReplacement(context, MaterialPageRoute(builder:  (context) => CustomTour()));
                           },
                           child: Text("Back"),
                         ),
