@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:swift_trip/screen/AppBar.dart';
 import 'package:swift_trip/ArrivalDayCard.dart';
 import 'package:swift_trip/DayViseCard.dart';
-// import 'BottomButtons.dart';
+import 'package:swift_trip/BottomButtons.dart';
 
 class PlanningScreen extends StatefulWidget {
   @override
@@ -28,7 +28,7 @@ class _PlanningScreenState extends State<PlanningScreen> {
               appBar(),
               ArrivalDayCard(),
               DayViseCard(),
-              // BottomButtons(),
+              BottomButtons(),
             ],
           ),
         ),
