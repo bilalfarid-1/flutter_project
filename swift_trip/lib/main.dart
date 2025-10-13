@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:swift_trip/screen/destination.dart';
-import 'package:swift_trip/screen/planning.dart';
+import 'package:swift_trip/screen/planning_screen.dart';
 void main() {
   runApp(
      MaterialApp(
