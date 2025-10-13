@@ -2,18 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:swift_trip/screen/Appbar.dart';
 import 'package:swift_trip/screen/agency.dart';
 
-<<<<<<< HEAD
 class CustomTour extends StatefulWidget {
   const CustomTour({super.key});
-=======
-class destination extends StatefulWidget {
-  destination({super.key});
->>>>>>> e280f3fc1b716e7b6c026e21f57e0976481e7452
   @override
-  _destination createState() => _destination();
+  State<CustomTour>createState() => _CustomTourState();
 }
 
-class _destination extends State<destination> {
+class _CustomTourState extends State<CustomTour> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
