@@ -28,7 +28,7 @@ class Appbar extends StatelessWidget {
                       MaterialPageRoute(builder: (context) => CustomTour()),
                     );
                   },
-                  child: Text("Destination", style: TextStyle(fontSize: 16)),
+                  child: Text("Destination", style: TextStyle(color: Colors.black,fontSize: 16)),
                 ),
                 TextButton(
                   onPressed: () {
@@ -37,7 +37,7 @@ class Appbar extends StatelessWidget {
                       MaterialPageRoute(builder: (context) => Agency()),
                     );
                   },
-                  child: Text("Agency", style: TextStyle(fontSize: 16)),
+                  child: Text("Agency", style: TextStyle(color: Colors.black,fontSize: 16)),
                 ),
                 TextButton(
                   onPressed: () {
@@ -46,7 +46,7 @@ class Appbar extends StatelessWidget {
                       MaterialPageRoute(builder: (context) => PlanningScreen()),
                     );
                   },
-                  child: Text("Planning", style: TextStyle(fontSize: 16)),
+                  child: Text("Planning", style: TextStyle(color: Colors.black,fontSize: 16)),
                 ),
                 TextButton(
                   onPressed: () {
@@ -55,11 +55,11 @@ class Appbar extends StatelessWidget {
                       MaterialPageRoute(builder: (context) => CustomTour()),
                     );
                   },
-                  child: Text("Summary", style: TextStyle(fontSize: 16)),
+                  child: Text("Summary", style: TextStyle(color: Colors.black,fontSize: 16)),
                 ),
                 TextButton(
                   onPressed: () {},
-                  child: Text("Payment", style: TextStyle(fontSize: 16)),
+                  child: Text("Payment", style: TextStyle(color: Colors.black,fontSize: 16)),
                 ),
               ],
             ),
