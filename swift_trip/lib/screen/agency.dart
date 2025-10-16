@@ -9,10 +9,14 @@ class Agency extends StatefulWidget {
 }
 
 class _Agency extends State<Agency> {
+  int selectedIndex =1;
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(preferredSize: Size.fromHeight(100), child: Appbar()),
+      appBar: PreferredSize(preferredSize: Size.fromHeight(100), child: Appbar(
+        selectedIndex: selectedIndex,
+      )),
       body: Container(
         height: double.infinity,
         decoration: BoxDecoration(

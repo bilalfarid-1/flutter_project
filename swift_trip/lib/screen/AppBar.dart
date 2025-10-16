@@ -4,7 +4,8 @@ import 'package:swift_trip/screen/destination.dart';
 import 'package:swift_trip/screen/planning_screen.dart';
 
 class Appbar extends StatelessWidget {
-  const Appbar({super.key});
+  final int selectedIndex;
+   Appbar({required this.selectedIndex});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -21,50 +22,32 @@ class Appbar extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(builder: (context) => CustomTour()),
-                    );
-                  },
-                  child: Text("Destination", style: TextStyle(color: Colors.black,fontSize: 16)),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(builder: (context) => Agency()),
-                    );
-                  },
-                  child: Text("Agency", style: TextStyle(color: Colors.black,fontSize: 16)),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(builder: (context) => PlanningScreen()),
-                    );
-                  },
-                  child: Text("Planning", style: TextStyle(color: Colors.black,fontSize: 16)),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(builder: (context) => CustomTour()),
-                    );
-                  },
-                  child: Text("Summary", style: TextStyle(color: Colors.black,fontSize: 16)),
-                ),
-                TextButton(
-                  onPressed: () {},
-                  child: Text("Payment", style: TextStyle(color: Colors.black,fontSize: 16)),
-                ),
-              ],
+                buttonBuild(context,0, "Destination"),
+                buttonBuild(context,1, "Agency"),
+                buttonBuild(context,2, "Planning"),
+                buttonBuild(context,3, "Summary"),
+                buttonBuild(context,4, "Payment"),
+                
+                ],
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget buttonBuild(BuildContext context,int index, String title) {
+    bool match = selectedIndex ==index;
+    return TextButton(
+      onPressed: () {
+        if (index == 0) Navigator.push(context, MaterialPageRoute(builder: (_) =>  CustomTour()));
+        if (index == 1) Navigator.push(context, MaterialPageRoute(builder: (_) =>  Agency()));
+        if (index == 2) Navigator.push(context, MaterialPageRoute(builder: (_) =>  PlanningScreen()));
+     
+      },
+      child: Text(
+        title,
+        style: TextStyle(color: match? Colors.green : Colors.black, fontSize: 16),
       ),
     );
   }

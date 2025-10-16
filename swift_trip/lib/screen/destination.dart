@@ -9,9 +9,17 @@ class CustomTour extends StatefulWidget {
 }
 
 class _CustomTourState extends State<CustomTour> {
+   int selectedIndex =0;
+   
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: PreferredSize(
+    preferredSize: const Size.fromHeight(100),
+    child: Appbar(
+      selectedIndex: selectedIndex,
+    ),
+  ),
       body: Container(
         height: double.infinity,
         decoration: BoxDecoration(
@@ -22,7 +30,6 @@ class _CustomTourState extends State<CustomTour> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Appbar(),
               Column(
                   children: [
                     Padding(
