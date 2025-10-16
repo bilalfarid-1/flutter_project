@@ -27,8 +27,7 @@ class Appbar extends StatelessWidget {
                 buttonBuild(context,2, "Planning"),
                 buttonBuild(context,3, "Summary"),
                 buttonBuild(context,4, "Payment"),
-                
-                ],
+                ], 
             ),
           ),
         ],
@@ -40,14 +39,14 @@ class Appbar extends StatelessWidget {
     bool match = selectedIndex ==index;
     return TextButton(
       onPressed: () {
-        if (index == 0) Navigator.push(context, MaterialPageRoute(builder: (_) =>  CustomTour()));
+        if (index == 0) Navigator.push(context, MaterialPageRoute(builder: (_) =>  destination()));
         if (index == 1) Navigator.push(context, MaterialPageRoute(builder: (_) =>  Agency()));
         if (index == 2) Navigator.push(context, MaterialPageRoute(builder: (_) =>  PlanningScreen()));
      
       },
       child: Text(
         title,
-        style: TextStyle(color: match? Colors.green : Colors.black, fontSize: 16),
+        style: TextStyle(color: match? Colors.blueAccent : Colors.black, fontSize: 16),
       ),
     );
   }

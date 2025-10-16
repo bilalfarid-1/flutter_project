@@ -10,7 +10,7 @@ class Agency extends StatefulWidget {
 
 class _Agency extends State<Agency> {
   int selectedIndex =1;
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -129,7 +129,7 @@ class _Agency extends State<Agency> {
                               ),
                             ),
                             onPressed: () {
-                              Navigator.pushReplacement(context, MaterialPageRoute(builder:  (context) => CustomTour()));
+                              Navigator.pushReplacement(context, MaterialPageRoute(builder:  (context) => destination()));
                             },
                             child: Padding(
                               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
