@@ -9,8 +9,8 @@ class destination extends StatefulWidget {
 }
 
 class _destinationState extends State<destination> {
-  String fromCity="";
-  String toCity="";
+  String fromCity = "";
+  String toCity = "";
   int selectedIndex = 0;
 
   @override
@@ -25,7 +25,18 @@ class _destinationState extends State<destination> {
         height: double.infinity,
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [const Color.fromARGB(255, 156, 207, 231), Colors.white],
+            begin: Alignment.topCenter, // start from top
+            end: Alignment.bottomCenter, // end at bottom
+            colors: [
+              Color(0xFFDFF2FE), // 0%
+              Color(0xFFEFF6FF), // 50%
+              Color(0xFFF0FDF4), // 100%
+            ],
+            stops: [
+              0.0, // 0%
+              0.5, // 50%
+              1.0, // 100%
+            ],
           ),
         ),
         child: SingleChildScrollView(
@@ -50,19 +61,25 @@ class _destinationState extends State<destination> {
                   Padding(
                     padding: const EdgeInsets.all(25),
                     child: Card(
+                      color: Colors.white,
                       child: Padding(
                         padding: const EdgeInsets.only(top: 20),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 20,
+                                vertical: 10,
+                              ),
                               child: Row(
                                 children: [
-                                  Icon(Icons.place , color: Colors.blue,),
+                                  Icon(Icons.place, color: Colors.blue),
                                   Text(
                                     "From",
-                                    style: TextStyle(fontWeight: FontWeight.bold),
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ],
                               ),
@@ -71,34 +88,46 @@ class _destinationState extends State<destination> {
                               padding: EdgeInsets.symmetric(horizontal: 20),
                               child: DropdownButtonFormField(
                                 decoration: InputDecoration(
+                                  filled: true,
+                                  fillColor: Color(0xffF9FAFB),
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20),
                                   ),
                                   focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20),
-                                    borderSide: BorderSide(color: Colors.blueAccent,width: 2),
+                                    borderSide: BorderSide(
+                                      color: Colors.blueAccent,
+                                      width: 2,
+                                    ),
                                   ),
                                   hintText: "Departure City",
                                 ),
-                                items: cities.map((value){
+                                items: cities.map((value) {
                                   return DropdownMenuItem(
                                     value: value,
-                                    child: Text(value));
+                                    child: Text(value),
+                                  );
                                 }).toList(),
                                 onChanged: (value) {
                                   setState(() {
-                                    fromCity=value.toString();
+                                    fromCity = value.toString();
                                   });
                                 },
-                              ),),
+                              ),
+                            ),
                             Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 20,
+                                vertical: 10,
+                              ),
                               child: Row(
                                 children: [
-                                  Icon(Icons.place, color: Colors.green, ),
+                                  Icon(Icons.place, color: Colors.green),
                                   Text(
                                     "To",
-                                    style: TextStyle(fontWeight: FontWeight.bold),
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ],
                               ),
@@ -107,23 +136,29 @@ class _destinationState extends State<destination> {
                               padding: EdgeInsets.symmetric(horizontal: 20),
                               child: DropdownButtonFormField(
                                 decoration: InputDecoration(
+                                  filled: true,
+                                  fillColor: Color(0xffF9FAFB),
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20),
                                   ),
                                   focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20),
-                                    borderSide: BorderSide(color: Colors.blueAccent,width: 2),
+                                    borderSide: BorderSide(
+                                      color: Colors.blueAccent,
+                                      width: 2,
+                                    ),
                                   ),
                                   hintText: "Arrival City",
                                 ),
-                                items: cities.map((value){
+                                items: cities.map((value) {
                                   return DropdownMenuItem(
                                     value: value,
-                                    child: Text(value));
+                                    child: Text(value),
+                                  );
                                 }).toList(),
                                 onChanged: (value) {
                                   setState(() {
-                                    toCity=value.toString();
+                                    toCity = value.toString();
                                   });
                                 },
                               ),
@@ -134,37 +169,66 @@ class _destinationState extends State<destination> {
                                 width: 500,
                                 height: 105,
                                 child: Card(
-                                   color: Color(0xffEFF6FF),
-                                   elevation: 1,
+                                  color: Color(0xffEFF6FF),
+                                  elevation: 1,
                                   child: Column(
                                     children: [
                                       Row(
                                         children: [
                                           Padding(
-                                            padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 10),
+                                            padding: const EdgeInsets.symmetric(
+                                              horizontal: 15,
+                                              vertical: 10,
+                                            ),
                                             child: Row(
                                               children: [
                                                 Padding(
-                                                  padding: const EdgeInsets.only(left: 5),
-                                                  child: Icon(Icons.explore ,color: Colors.blueGrey,),
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                        left: 5,
+                                                      ),
+                                                  child: Icon(
+                                                    Icons.explore,
+                                                    color: Colors.blueGrey,
+                                                  ),
                                                 ),
-                                                Text("Route Preview",style: TextStyle(color: Color(0xff1C398E)),),
+                                                Text(
+                                                  "Route Preview",
+                                                  style: TextStyle(
+                                                    color: Color(0xff1C398E),
+                                                  ),
+                                                ),
                                               ],
                                             ),
                                           ),
-                                          
                                         ],
                                       ),
                                       Padding(
-                                        padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 0),
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 15,
+                                          vertical: 0,
+                                        ),
                                         child: Row(
-                                              children: [
-                                                Text(fromCity,style: TextStyle(color: Color(0xff1447E6)),),
-                                                Icon(Icons.arrow_forward,),
-                                                Text(toCity,style: TextStyle(color: Color(0xff1447E6)),)
-                                              ],
+                                          children: [
+                                            Text(
+                                              fromCity,
+                                              style: TextStyle(
+                                                color: Color(0xff1447E6),
+                                              ),
                                             ),
-                                      )
+                                            Icon(
+                                              Icons.arrow_forward,
+                                              color: Color(0xff1447E6),
+                                            ),
+                                            Text(
+                                              toCity,
+                                              style: TextStyle(
+                                                color: Color(0xff1447E6),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -190,7 +254,7 @@ class _destinationState extends State<destination> {
                       ),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
-                          horizontal: 100,
+                          horizontal: 120,
                           vertical: 15,
                         ),
                         child: Text("Continue", style: TextStyle()),
