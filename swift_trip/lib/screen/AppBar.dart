@@ -5,7 +5,7 @@ import 'package:swift_trip/screen/planning_screen.dart';
 
 class Appbar extends StatelessWidget {
   final int selectedIndex;
-  Appbar({required this.selectedIndex});
+  const Appbar({super.key, required this.selectedIndex});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -60,18 +60,13 @@ class Appbar extends StatelessWidget {
     bool match = selectedIndex == index;
     return TextButton(
       onPressed: () {
-        if (index == 0)
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (_) => destination()),
-          );
-        if (index == 1)
-          Navigator.push(context, MaterialPageRoute(builder: (_) => Agency()));
-        if (index == 2)
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (_) => PlanningScreen()),
-          );
+        if (index == 0) {
+          Navigator.push(context, MaterialPageRoute(builder: (_) => destination()),);
+        }
+        if (index == 1)Navigator.push(context, MaterialPageRoute(builder: (_) => Agency()));
+          if (index == 2) {
+            Navigator.push(context,MaterialPageRoute(builder: (_) => PlanningScreen()),);
+          }
       },
       child: Text(
         title,
