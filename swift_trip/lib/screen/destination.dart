@@ -21,7 +21,7 @@ class _destinationState extends State<destination> {
         preferredSize: const Size.fromHeight(100),
         child: Appbar(selectedIndex: selectedIndex),
       ),
-      body: Container(
+      body: SizedBox(
         height: double.infinity,
         child: SingleChildScrollView(
           child: Column(

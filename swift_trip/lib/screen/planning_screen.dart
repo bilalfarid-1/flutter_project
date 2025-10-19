@@ -24,8 +24,6 @@ class _PlanningScreenState extends State<PlanningScreen> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              // appBar(),
-
               Container(
                 width: double.infinity,
                 padding: EdgeInsets.symmetric(vertical: 24, horizontal: 16),

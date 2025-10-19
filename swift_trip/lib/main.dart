@@ -4,7 +4,7 @@ import 'package:swift_trip/screen/login_screen.dart';
 void main() {
   runApp(
      MaterialApp(
-      title: 'MAD Project',
+      title: 'Tourist App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           scaffoldBackgroundColor: Color(0xFFDFF2FE),
