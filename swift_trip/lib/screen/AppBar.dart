@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:swift_trip/screen/agency.dart';
 import 'package:swift_trip/screen/destination.dart';
+import 'package:swift_trip/screen/login_screen.dart';
 import 'package:swift_trip/screen/planning_screen.dart';
 
 class Appbar extends StatelessWidget {
@@ -20,7 +21,7 @@ class Appbar extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 25),
                 child: IconButton(
                   onPressed: () {
-                    
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()),);
                   },
                   icon: Icon(Icons.arrow_back),
                 ),

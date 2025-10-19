@@ -23,22 +23,6 @@ class _destinationState extends State<destination> {
       ),
       body: Container(
         height: double.infinity,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter, // start from top
-            end: Alignment.bottomCenter, // end at bottom
-            colors: [
-              Color(0xFFDFF2FE), // 0%
-              Color(0xFFEFF6FF), // 50%
-              Color(0xFFF0FDF4), // 100%
-            ],
-            stops: [
-              0.0, // 0%
-              0.5, // 50%
-              1.0, // 100%
-            ],
-          ),
-        ),
         child: SingleChildScrollView(
           child: Column(
             children: [

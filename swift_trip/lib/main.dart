@@ -6,19 +6,10 @@ void main() {
      MaterialApp(
       title: 'MAD Project',
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(colors: [
-              const Color.fromARGB(255, 156, 207, 231),
-              Colors.white
-            ],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter)
+      theme: ThemeData(
+          scaffoldBackgroundColor: Color(0xFFDFF2FE),
           ),
-          child: LoginScreen(),
-        ),
+      home:  LoginScreen(),
       ),
-    )
   );
 }
