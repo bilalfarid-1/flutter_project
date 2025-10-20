@@ -3,6 +3,7 @@ import 'package:swift_trip/screen/agency.dart';
 import 'package:swift_trip/screen/destination.dart';
 import 'package:swift_trip/screen/login_screen.dart';
 import 'package:swift_trip/screen/planning_screen.dart';
+import 'package:swift_trip/screen/summary.dart';
 
 class Appbar extends StatelessWidget {
   final int selectedIndex;
@@ -21,7 +22,10 @@ class Appbar extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 25),
                 child: IconButton(
                   onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()),);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => LoginScreen()),
+                    );
                   },
                   icon: Icon(Icons.arrow_back),
                 ),
@@ -64,10 +68,16 @@ class Appbar extends StatelessWidget {
         if (index == 0) {
           Navigator.push(context, MaterialPageRoute(builder: (_) => destination()),);
         }
-        if (index == 1)Navigator.push(context, MaterialPageRoute(builder: (_) => Agency()));
-          if (index == 2) {
-            Navigator.push(context,MaterialPageRoute(builder: (_) => PlanningScreen()),);
-          }
+        if (index == 1) {
+          Navigator.push(context, MaterialPageRoute(builder: (_) => Agency()));
+        }
+        if (index == 2) {
+          Navigator.push(context, MaterialPageRoute(builder: (_) => PlanningScreen()),);
+        } else if (index == 3) {
+          Navigator.push(context, MaterialPageRoute(builder: (_) => Summary()));
+        } else if (index == 4) {
+          // Navigate to Payment Screen
+        }
       },
       child: Text(
         title,
