@@ -245,7 +245,7 @@ class _destinationState extends State<destination> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text("Continue", style: TextStyle()),
-                            // Icon( Icons.arrow_forward),
+                            Icon( Icons.arrow_forward),
                           ],
                         ),
                       ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:swift_trip/screen/Appbar.dart';
+import 'package:swift_trip/screen/planning_screen.dart';
 
 class Summary extends StatefulWidget {
   const Summary({super.key});
@@ -186,7 +187,46 @@ class _SummaryState extends State<Summary> {
                     ),
                   ),
                 ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  ElevatedButton(onPressed: (){
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder:  (context) => PlanningScreen()));
+                  },
+                    style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                            ),
+                   child: Padding(
+                     padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
+                     child: Row(
+                       children: [
+                          Icon( Icons.arrow_back, color: Colors.black,),
+                         Text("Back", style: TextStyle(color: Colors.black)),
+                       ],
+                     ),
+                   )),
+                  ElevatedButton(onPressed: (){}, 
+                  style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.blueAccent,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                            ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
+                    child: Row(
+                      children: [
+                        Text("Proceed to Payment",style: TextStyle(color: Colors.white),),
+                        Icon(Icons.arrow_forward, color: Colors.white,),
+                      ],
+                    ),
+                  )),
+                ],
               )
+
             ],
           ),
         ),
