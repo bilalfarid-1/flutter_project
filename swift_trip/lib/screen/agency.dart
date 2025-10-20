@@ -52,7 +52,7 @@ class _Agency extends State<Agency> {
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                                       children: [
-                                        Icon(Icons.add_a_photo, size: 50),
+                                        Icon(Icons.add_a_photo, size: 50,color: Colors.brown ,),
                                         Text("Mountain \nAdventures"),
                                         Text("Rs\n5000"),
                                       ],
@@ -88,7 +88,7 @@ class _Agency extends State<Agency> {
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                                       children: [
-                                        Icon(Icons.location_on_outlined, size: 50),
+                                        Icon(Icons.location_on_outlined, size: 50, color: Colors.green,),
                                         Text("City \nExplorers"),
                                         Text("Rs\n4000"),
                                       ],
