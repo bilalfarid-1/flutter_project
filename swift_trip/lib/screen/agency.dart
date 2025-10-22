@@ -20,11 +20,6 @@ class _Agency extends State<Agency> {
       ),
       body: Container(
         height: double.infinity,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [const Color.fromARGB(255, 156, 207, 231), Colors.white],
-          ),
-        ),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: SingleChildScrollView(
