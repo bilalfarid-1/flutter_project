@@ -20,28 +20,18 @@ class _PaymentScreenState extends State<PaymentScreen> {
         child: Appbar(selectedIndex: selectedIndex),
       ),
       body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("Payment & Confirmation"),
-            Text("Complete your booking"),
-            Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-                
-              ),
-              child: Padding(padding: EdgeInsets.all(16),
+            const Center(
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Payment Method"),
-                  SizedBox(height: 10),
+
                 ],
-              ),)
-            ),
-            Card(
-        
+              ),
             )
+            
           ],
         ),
       ),
