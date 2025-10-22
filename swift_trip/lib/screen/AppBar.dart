@@ -4,6 +4,7 @@ import 'package:swift_trip/screen/destination.dart';
 import 'package:swift_trip/screen/login_screen.dart';
 import 'package:swift_trip/screen/planning_screen.dart';
 import 'package:swift_trip/screen/summary.dart';
+import 'package:swift_trip/screen/payment_screen.dart';
 
 class Appbar extends StatelessWidget {
   final int selectedIndex;
@@ -76,7 +77,7 @@ class Appbar extends StatelessWidget {
         } else if (index == 3) {
           Navigator.push(context, MaterialPageRoute(builder: (_) => Summary()));
         } else if (index == 4) {
-          // Navigate to Payment Screen
+          Navigator.push(context, MaterialPageRoute(builder: (_) => PaymentScreen()));
         }
       },
       child: Text(
