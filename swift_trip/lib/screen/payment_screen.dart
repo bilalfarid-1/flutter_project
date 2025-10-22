@@ -19,6 +19,29 @@ class _PaymentScreenState extends State<PaymentScreen> {
         preferredSize: Size.fromHeight(100),
         child: Appbar(selectedIndex: selectedIndex),
       ),
+      body: Column(
+        children: [
+          Text("Payment & Confirmation"),
+          Text("Complete your booking"),
+          Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+              
+            ),
+            child: Padding(padding: EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("Payment Method"),
+                SizedBox(height: 10),
+              ],
+            ),)
+          ),
+          Card(
+
+          )
+        ],
+      ),
     );
   }
 }
