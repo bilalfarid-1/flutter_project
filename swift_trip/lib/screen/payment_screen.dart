@@ -27,11 +27,19 @@ class _PaymentScreenState extends State<PaymentScreen> {
             const Center(
               child: Column(
                 children: [
-
+                  Text(
+                    "Payment & Confirmation",
+                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(height: 4),
+                  Text(
+                    "Complete your booking",
+                    style: TextStyle(fontSize: 16, color: Colors.grey),
+                  ),
                 ],
               ),
-            )
-            
+            ),
+            const SizedBox(height: 24),
           ],
         ),
       ),
