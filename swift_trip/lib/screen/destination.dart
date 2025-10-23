@@ -106,7 +106,7 @@ class _destinationState extends State<destination> {
                               ),
                               child: Row(
                                 children: [
-                                  Icon(Icons.place, color: Colors.green),
+                                  Icon(Icons.place, color: Colors.red),
                                   Text(
                                     "To",
                                     style: TextStyle(
