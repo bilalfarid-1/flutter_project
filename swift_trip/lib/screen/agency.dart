@@ -94,7 +94,6 @@ class _Agency extends State<Agency> {
                           ),
                         ),
                       ),
-
                       Card(
                         child: Padding(
                           padding: const EdgeInsets.all(15),
@@ -177,14 +176,8 @@ class _Agency extends State<Agency> {
                         ),
                         child: Row(
                           children: [
-                            Icon(
-                              Icons.arrow_back,
-                              color: Colors.black,
-                            ),
-                            Text(
-                              "Back",
-                              style: TextStyle(color: Colors.black),
-                            ),
+                            Icon(Icons.arrow_back, color: Colors.black),
+                            Text("Back", style: TextStyle(color: Colors.black)),
                           ],
                         ),
                       ),
@@ -208,10 +201,7 @@ class _Agency extends State<Agency> {
                               "Continue",
                               style: TextStyle(color: Colors.white),
                             ),
-                            Icon(
-                              Icons.arrow_forward,
-                              color: Colors.white,
-                            ),
+                            Icon(Icons.arrow_forward, color: Colors.white),
                           ],
                         ),
                       ),

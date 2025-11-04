@@ -224,7 +224,10 @@ class _destinationState extends State<destination> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 40,
+                      vertical: 10,
+                    ),
                     child: ElevatedButton(
                       onPressed: () {
                         Navigator.push(
@@ -245,7 +248,7 @@ class _destinationState extends State<destination> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text("Continue", style: TextStyle()),
-                            Icon( Icons.arrow_forward),
+                            Icon(Icons.arrow_forward),
                           ],
                         ),
                       ),

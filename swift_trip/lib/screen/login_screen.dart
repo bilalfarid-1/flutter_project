@@ -3,7 +3,6 @@ import 'package:swift_trip/screen/destination.dart';
 
 class LoginScreen extends StatefulWidget {
    const LoginScreen({super.key});
-
   @override
   State<LoginScreen> createState() {
     return _LoginScreenState();
