@@ -40,43 +40,56 @@ class _SummaryState extends State<Summary> {
                 child: Card(
                   margin: EdgeInsets.all(30),
                   child: Padding(
-                    padding: EdgeInsets.only(top: 15, bottom: 15, left: 10, right: 200),
+                    padding: EdgeInsets.only(
+                      top: 15,
+                      bottom: 15,
+                      left: 10,
+                      right: 200,
+                    ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("Itenary", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                        Text(
+                          "Itenary",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                         SizedBox(height: 10),
                         Container(
                           margin: EdgeInsets.symmetric(vertical: 10),
                           decoration: BoxDecoration(
-                            border: Border(left: BorderSide(color: Colors.grey)),
+                            border: Border(
+                              left: BorderSide(color: Colors.grey),
+                            ),
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: RichText(
-                              text : TextSpan(
+                              text: TextSpan(
                                 style: TextStyle(color: Colors.black),
                                 children: [
                                   TextSpan(
                                     text: "Arrival Day",
-                                    style: TextStyle(fontWeight: FontWeight.bold),
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
-                                  TextSpan(
-                                    text: "\n\t\tMountain view resort",
-                                  ),
-                                  TextSpan(
-                                    text: "\n\t\tEvening dinner",
-                                  ),
+                                  TextSpan(text: "\n\t\tMountain view resort"),
+                                  TextSpan(text: "\n\t\tEvening dinner"),
                                 ],
                               ),
                             ),
                           ),
                         ),
-                          
+
                         Container(
                           margin: EdgeInsets.symmetric(vertical: 10),
                           decoration: BoxDecoration(
-                            border: Border(left: BorderSide(color: Colors.grey)),
+                            border: Border(
+                              left: BorderSide(color: Colors.grey),
+                            ),
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -86,20 +99,18 @@ class _SummaryState extends State<Summary> {
                                 children: [
                                   TextSpan(
                                     text: "Day 1",
-                                    style: TextStyle(fontWeight: FontWeight.bold),
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
-                                  TextSpan(
-                                    text: "\n\t\tBreakfast at resort",
-                                  ),
+                                  TextSpan(text: "\n\t\tBreakfast at resort"),
                                   TextSpan(
                                     text: "\n\t\tHiking and sightseeing",
                                   ),
                                   TextSpan(
                                     text: "\n\t\tLunch at local restaurant",
                                   ),
-                                  TextSpan(
-                                    text: "\n\t\tEvening bonfire",
-                                  ),
+                                  TextSpan(text: "\n\t\tEvening bonfire"),
                                 ],
                               ),
                             ),
@@ -108,7 +119,9 @@ class _SummaryState extends State<Summary> {
                         Container(
                           margin: EdgeInsets.symmetric(vertical: 10),
                           decoration: BoxDecoration(
-                            border: Border(left: BorderSide(color: Colors.grey)),
+                            border: Border(
+                              left: BorderSide(color: Colors.grey),
+                            ),
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -118,20 +131,14 @@ class _SummaryState extends State<Summary> {
                                 children: [
                                   TextSpan(
                                     text: "Day 2",
-                                    style: TextStyle(fontWeight: FontWeight.bold),
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
-                                  TextSpan(
-                                    text: "\n\t\tBreakfast at resort",
-                                  ),
-                                  TextSpan(
-                                    text: "\n\t\tVisit local market",
-                                  ),
-                                  TextSpan(
-                                    text: "\n\t\tLunch at cafe",
-                                  ),
-                                  TextSpan(
-                                    text: "\n\t\tRelax at resort",
-                                  ),
+                                  TextSpan(text: "\n\t\tBreakfast at resort"),
+                                  TextSpan(text: "\n\t\tVisit local market"),
+                                  TextSpan(text: "\n\t\tLunch at cafe"),
+                                  TextSpan(text: "\n\t\tRelax at resort"),
                                 ],
                               ),
                             ),
@@ -140,7 +147,9 @@ class _SummaryState extends State<Summary> {
                         Container(
                           margin: EdgeInsets.symmetric(vertical: 10),
                           decoration: BoxDecoration(
-                            border: Border(left: BorderSide(color: Colors.grey)),
+                            border: Border(
+                              left: BorderSide(color: Colors.grey),
+                            ),
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -150,13 +159,14 @@ class _SummaryState extends State<Summary> {
                                 children: [
                                   TextSpan(
                                     text: "Departure Day",
-                                    style: TextStyle(fontWeight: FontWeight.bold),
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
+                                  TextSpan(text: "\n\t\tBreakfast at resort"),
                                   TextSpan(
-                                    text: "\n\t\tBreakfast at resort",
-                                  ),
-                                  TextSpan(
-                                    text: "\n\t\tCheck-out and transfer to airport",
+                                    text:
+                                        "\n\t\tCheck-out and transfer to airport",
                                   ),
                                 ],
                               ),
@@ -176,13 +186,22 @@ class _SummaryState extends State<Summary> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("Total Cost", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                        Text(
+                          "Total Cost",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                         SizedBox(height: 10),
                         Text("Accommodation: Rs 10,000"),
                         Text("Activities: Rs 5,000"),
                         Text("Meals: Rs 3,000"),
                         Divider(height: 20, color: Colors.black),
-                        Text("Grand Total: Rs 18,000", style: TextStyle(fontWeight: FontWeight.bold)),
+                        Text(
+                          "Grand Total: Rs 18,000",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
                       ],
                     ),
                   ),
@@ -191,42 +210,59 @@ class _SummaryState extends State<Summary> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  ElevatedButton(onPressed: (){
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder:  (context) => PlanningScreen()));
-                  },
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => PlanningScreen(),
+                        ),
+                      );
+                    },
                     style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                            ),
-                   child: Padding(
-                     padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
-                     child: Row(
-                       children: [
-                          Icon( Icons.arrow_back, color: Colors.black,),
-                         Text("Back", style: TextStyle(color: Colors.black)),
-                       ],
-                     ),
-                   )),
-                  ElevatedButton(onPressed: (){}, 
-                  style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.blueAccent,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                            ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
-                    child: Row(
-                      children: [
-                        Text("Proceed to Payment",style: TextStyle(color: Colors.white),),
-                        Icon(Icons.arrow_forward, color: Colors.white,),
-                      ],
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                     ),
-                  )),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 10,
+                        horizontal: 25,
+                      ),
+                      child: Row(
+                        children: [
+                          Icon(Icons.arrow_back, color: Colors.black),
+                          Text("Back", style: TextStyle(color: Colors.black)),
+                        ],
+                      ),
+                    ),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blueAccent,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 10,
+                        horizontal: 25,
+                      ),
+                      child: Row(
+                        children: [
+                          Text(
+                            "Proceed to Payment",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          Icon(Icons.arrow_forward, color: Colors.white),
+                        ],
+                      ),
+                    ),
+                  ),
                 ],
-              )
-
+              ),
             ],
           ),
         ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class SignupScreen extends StatefulWidget {
-   const SignupScreen({super.key});
+  const SignupScreen({super.key});
 
   @override
   State<SignupScreen> createState() {
@@ -54,7 +54,10 @@ class SignupScreenState extends State<SignupScreen> {
                       hintText: 'Re-Enter you Password',
                     ),
                   ),
-                  ElevatedButton(onPressed: () {}, child: Text('Create Account')),
+                  ElevatedButton(
+                    onPressed: () {},
+                    child: Text('Create Account'),
+                  ),
                   Text("Already have Account? Login"),
                 ],
               ),
