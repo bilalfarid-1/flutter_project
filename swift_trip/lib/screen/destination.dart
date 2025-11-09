@@ -69,7 +69,7 @@ class _destinationState extends State<destination> {
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 20),
+                              padding: EdgeInsets.symmetric(horizontal: 21),
                               child: DropdownButtonFormField(
                                 decoration: InputDecoration(
                                   filled: true,
