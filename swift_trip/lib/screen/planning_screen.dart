@@ -5,6 +5,8 @@ import 'package:swift_trip/DayViseCard.dart';
 import 'package:swift_trip/BottomButtons.dart';
 
 class PlanningScreen extends StatefulWidget {
+  const PlanningScreen({super.key});
+
   @override
   _PlanningScreenState createState() => _PlanningScreenState();
 }
@@ -18,7 +20,7 @@ class _PlanningScreenState extends State<PlanningScreen> {
       appBar: PreferredSize(preferredSize: Size.fromHeight(100), child: Appbar(
         selectedIndex: selectedIndex,
       )),
-      body: Container(
+      body: SizedBox(
         height: double.infinity,
         
         child: SingleChildScrollView(

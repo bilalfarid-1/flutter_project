@@ -18,7 +18,7 @@ class _Agency extends State<Agency> {
         preferredSize: Size.fromHeight(100),
         child: Appbar(selectedIndex: selectedIndex),
       ),
-      body: Container(
+      body: SizedBox(
         height: double.infinity,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -61,7 +61,7 @@ class _Agency extends State<Agency> {
                               Text("⭐ 4.8 (200 reviews)"),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Container(
+                                child: SizedBox(
                                   width: 300,
                                   child: GridView(
                                     gridDelegate:
@@ -115,7 +115,7 @@ class _Agency extends State<Agency> {
                               Text("⭐ 4.6 (150 reviews)"),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Container(
+                                child: SizedBox(
                                   width: 300,
                                   child: GridView(
                                     gridDelegate:
