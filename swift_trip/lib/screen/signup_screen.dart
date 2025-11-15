@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:swift_trip/screen/login_screen.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -58,7 +59,22 @@ class SignupScreenState extends State<SignupScreen> {
                     onPressed: () {},
                     child: Text('Create Account'),
                   ),
-                  Text("Already have Account? Login"),
+                  Text.rich(
+                    TextSpan(
+                      text: "Already have an account? ",
+                      children: [
+                        WidgetSpan(
+                          alignment: PlaceholderAlignment.middle,
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginScreen())); 
+                            },
+                            child: Text('Login'),
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
                 ],
               ),
             ),
