@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:swift_trip/screen/destination.dart';
+import 'package:swift_trip/screen/signup_screen.dart';
 
 class LoginScreen extends StatefulWidget {
    const LoginScreen({super.key});
@@ -39,7 +40,22 @@ class _LoginScreenState extends State<LoginScreen> {
                   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => destination()));
                 }, child: Text('Login')),
                 TextButton(onPressed: () {}, child: Text('Forgot Password')),
-                Text("Don't have Account? Sign up"),
+                Text.rich(
+                  TextSpan(
+                    text: "Don't have an account? ",
+                    children: [
+                      WidgetSpan(
+                        alignment: PlaceholderAlignment.middle,
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => SignupScreen())); 
+                          },
+                          child: Text('Sign Up'),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),
