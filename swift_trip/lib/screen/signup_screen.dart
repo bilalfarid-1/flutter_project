@@ -11,6 +11,8 @@ class SignupScreen extends StatefulWidget {
 }
 
 class SignupScreenState extends State<SignupScreen> {
+  bool _obscurePassword = true;
+  bool _obscureConfirm = true;
   @override
   Widget build(context) {
     return Scaffold(
@@ -70,13 +72,35 @@ class SignupScreenState extends State<SignupScreen> {
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         hintText: 'Enter you Password',
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            _obscurePassword
+                                ? Icons.visibility_off
+                                : Icons.visibility,
+                          ),
+                          onPressed: () => setState(
+                            () => _obscurePassword = !_obscurePassword,
+                          ),
+                        ),
                       ),
+                      obscureText: _obscurePassword,
                     ),
                     TextField(
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         hintText: 'Re-Enter you Password',
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            _obscureConfirm
+                                ? Icons.visibility_off
+                                : Icons.visibility,
+                          ),
+                          onPressed: () => setState(
+                            () => _obscureConfirm = !_obscureConfirm,
+                          ),
+                        ),
                       ),
+                      obscureText: _obscureConfirm,
                     ),
                     ElevatedButton(
                       onPressed: () {},
