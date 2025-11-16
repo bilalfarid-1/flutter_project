@@ -102,30 +102,37 @@ class SignupScreenState extends State<SignupScreen> {
                       ),
                       obscureText: _obscureConfirm,
                     ),
-                    ElevatedButton(
-                      onPressed: () {},
-                      child: Text('Create Account'),
-                    ),
-                    Text.rich(
-                      TextSpan(
-                        text: "Already have an account? ",
-                        children: [
-                          WidgetSpan(
-                            alignment: PlaceholderAlignment.middle,
-                            child: InkWell(
-                              onTap: () {
-                                Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => LoginScreen(),
-                                  ),
-                                );
-                              },
-                              child: Text('Login'),
-                            ),
+                    SizedBox(
+                      height: 48,
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: () {},
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
                           ),
-                        ],
+                          elevation: 2,
+                        ),
+                        child: const Text('Create Account'),
                       ),
+                    ),
+                    const SizedBox(height: 12),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text('Already have an account? '),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => LoginScreen(),
+                              ),
+                            );
+                          },
+                          child: const Text('Login'),
+                        ),
+                      ],
                     ),
                   ], // end inner Column children
                 ), // end inner Column
