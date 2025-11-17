@@ -7,15 +7,12 @@ import 'package:swift_trip/screen/summary.dart';
 import 'package:swift_trip/screen/payment_screen.dart';
 
 class Appbar extends StatelessWidget {
-  final int selectedIndex; 
+  final int selectedIndex;
   const Appbar({super.key, required this.selectedIndex});
-
   @override
   Widget build(BuildContext context) {
-    final double progress = (selectedIndex + 1) / 5; 
-
     return Container(
-      height: 120,
+      height: 100,
       color: Colors.white,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -31,12 +28,12 @@ class Appbar extends StatelessWidget {
                       MaterialPageRoute(builder: (context) => LoginScreen()),
                     );
                   },
-                  icon: const Icon(Icons.arrow_back),
+                  icon: Icon(Icons.arrow_back),
                 ),
               ),
-              const Expanded(
+              Expanded(
                 child: Padding(
-                  padding: EdgeInsets.only(right: 25),
+                  padding: const EdgeInsets.only(right: 25),
                   child: Center(
                     child: Text(
                       "Custom Tour Creation",
@@ -47,8 +44,6 @@ class Appbar extends StatelessWidget {
               ),
             ],
           ),
-
-          // your step buttons
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
@@ -62,20 +57,6 @@ class Appbar extends StatelessWidget {
               ],
             ),
           ),
-
-          // progress line bar
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24.0),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(4),
-              child: LinearProgressIndicator(
-                value: progress,          // 0.0 – 1.0
-                minHeight: 4,
-                backgroundColor: Colors.grey.shade300,
-                valueColor: const AlwaysStoppedAnimation(Colors.blueAccent),
-              ),
-            ),
-          ),
         ],
       ),
     );
@@ -86,20 +67,17 @@ class Appbar extends StatelessWidget {
     return TextButton(
       onPressed: () {
         if (index == 0) {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (_) => destination()));
-        } else if (index == 1) {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (_) => Agency()));
-        } else if (index == 2) {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (_) => PlanningScreen()));
+          Navigator.push(context, MaterialPageRoute(builder: (_) => destination()),);
+        }
+        if (index == 1) {
+          Navigator.push(context, MaterialPageRoute(builder: (_) => Agency()));
+        }
+        if (index == 2) {
+          Navigator.push(context, MaterialPageRoute(builder: (_) => PlanningScreen()),);
         } else if (index == 3) {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (_) => Summary()));
+          Navigator.push(context, MaterialPageRoute(builder: (_) => Summary()));
         } else if (index == 4) {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (_) => PaymentScreen()));
+          Navigator.push(context, MaterialPageRoute(builder: (_) => PaymentScreen()));
         }
       },
       child: Text(
