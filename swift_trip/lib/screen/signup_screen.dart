@@ -25,39 +25,46 @@ class SignupScreenState extends State<SignupScreen> {
               child: Column(
                 children: [
                   TextFormField(
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: "Enter Name",
                       hintText: 'Name',
+                      prefixIcon: Icon(Icons.person),
                     ),
                   ),
                   const SizedBox(height: 12),
                   TextField(
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       hintText: 'Email',
+                      prefixIcon: Icon(Icons.email),
                     ),
                   ),
                   const SizedBox(height: 12),
                   TextField(
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       hintText: 'Phone Number',
+                      prefixIcon: Icon(Icons.phone),
                     ),
                   ),
                   const SizedBox(height: 12),
                   TextField(
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       border: OutlineInputBorder(),
-                      hintText: 'Enter you Password',
+                      hintText: 'Enter your password',
+                      prefixIcon: Icon(Icons.lock),
                     ),
+                    obscureText: true,
                   ),
                   const SizedBox(height: 12),
                   TextField(
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       border: OutlineInputBorder(),
-                      hintText: 'Re-Enter you Password',
+                      hintText: 'Re-enter your password',
+                      prefixIcon: Icon(Icons.lock_outline),
                     ),
+                    obscureText: true,
                   ),
                   const SizedBox(height: 16),
                   SizedBox(
