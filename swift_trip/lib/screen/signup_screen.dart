@@ -5,25 +5,33 @@ class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
 
   @override
-  State<SignupScreen> createState() {
-    return SignupScreenState();
-  }
-}
-
-class SignupScreenState extends State<SignupScreen> {
-  @override
-  Widget build(context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset('assets/images/logo1.png'),
-            const SizedBox(height: 8),
-            Text('Plan Smarter. Travel Better'),
-            SingleChildScrollView(
+  class SignupScreenState extends State<SignupScreen> {
+    @override
+    Widget build(context) {
+      return Scaffold(
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: SingleChildScrollView(
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  const SizedBox(height: 24),
+                  Image.asset(
+                    'assets/images/logo1.png',
+                    width: 120,
+                    height: 120,
+                    fit: BoxFit.contain,
+                  ),
+                  const SizedBox(height: 12),
+                  Text(
+                    'Plan Smarter. Travel Better',
+                    style: Theme.of(context).textTheme.titleLarge,
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 16),
+
+                  // Form fields (single column)
                   TextFormField(
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
@@ -106,9 +114,11 @@ class SignupScreenState extends State<SignupScreen> {
                 ],
               ),
             ),
-          ],
+          ),
         ),
-      ),
+      );
+    }
+  }
     );
   }
 }
