@@ -68,9 +68,9 @@ class _SignupScreenState extends State<SignupScreen> {
         });
       }
 
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Account created')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Account created')));
 
       Navigator.pushReplacement(
         context,
@@ -78,10 +78,13 @@ class _SignupScreenState extends State<SignupScreen> {
       );
     } on FirebaseAuthException catch (e) {
       final message = e.message ?? 'Authentication error';
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(message)));
     } catch (e) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(const SnackBar(content: Text('Failed to create account')));
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Failed to create account')));
     } finally {
       if (mounted) setState(() => _isLoading = false);
     }

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:swift_trip/screen/destination.dart';
 import 'package:swift_trip/screen/signup_screen.dart';
 
@@ -16,6 +18,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _passwordCtrl = TextEditingController();
   bool _obscurePassword = true;
   bool _isFormValid = false;
+  bool _isLoading = false;
 
   @override
   void initState() {
@@ -116,16 +119,53 @@ class _LoginScreenState extends State<LoginScreen> {
                         width: double.infinity,
                         height: 48,
                         child: ElevatedButton(
-                          onPressed: _isFormValid
-                              ? () {
-                                  if (_formKey.currentState?.validate() ??
-                                      false) {
+                          onPressed: (_isFormValid && !_isLoading)
+                              ? () async {
+                                  if (!(_formKey.currentState?.validate() ??
+                                      false))
+                                    return;
+                                  setState(() => _isLoading = true);
+                                  final email = _emailCtrl.text.trim();
+                                  final password = _passwordCtrl.text;
+                                  try {
+                                    final userCredential = await FirebaseAuth
+                                        .instance
+                                        .signInWithEmailAndPassword(
+                                          email: email,
+                                          password: password,
+                                        );
+                                    final uid = userCredential.user?.uid;
+                                    if (uid != null) {
+                                      final doc = await FirebaseFirestore
+                                          .instance
+                                          .collection('users')
+                                          .doc(uid)
+                                          .get();
+                                      final userData = doc.data();
+                                      // You can store userData in app state if needed
+                                    }
+
                                     Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) => destination(),
                                       ),
                                     );
+                                  } on FirebaseAuthException catch (e) {
+                                    final message =
+                                        e.message ?? 'Authentication error';
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(content: Text(message)),
+                                    );
+                                  } catch (e) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                        content: Text('Failed to sign in'),
+                                      ),
+                                    );
+                                  } finally {
+                                    if (mounted)
+                                      setState(() => _isLoading = false);
                                   }
                                 }
                               : null,
@@ -144,13 +184,24 @@ class _LoginScreenState extends State<LoginScreen> {
                               borderRadius: BorderRadius.circular(10),
                             ),
                           ),
-                          child: Text(
-                            'Login',
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
+                          child: _isLoading
+                              ? const SizedBox(
+                                  width: 20,
+                                  height: 20,
+                                  child: CircularProgressIndicator(
+                                    strokeWidth: 2.0,
+                                    valueColor: AlwaysStoppedAnimation<Color>(
+                                      Colors.white,
+                                    ),
+                                  ),
+                                )
+                              : Text(
+                                  'Login',
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
                         ),
                       ),
                       const SizedBox(height: 8),
