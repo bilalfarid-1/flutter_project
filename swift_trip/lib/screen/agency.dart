@@ -10,6 +10,7 @@ class Agency extends StatefulWidget {
 
 class _Agency extends State<Agency> {
   int selectedIndex = 1;
+  int selectedAgency = 0; 
 
   @override
   Widget build(BuildContext context) {
@@ -40,117 +41,155 @@ class _Agency extends State<Agency> {
                   padding: const EdgeInsets.all(10),
                   child: Column(
                     children: [
-                      Card(
-                        child: Padding(
-                          padding: const EdgeInsets.all(15),
-                          child: Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  Icon(
-                                    Icons.add_a_photo,
-                                    size: 50,
-                                    color: Colors.brown,
-                                  ),
-                                  Text("Mountain \nAdventures"),
-                                  Text("Rs\n5000"),
-                                ],
-                              ),
-                              Text("⭐ 4.8 (200 reviews)"),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: SizedBox(
-                                  width: 300,
-                                  child: GridView(
-                                    gridDelegate:
-                                        SliverGridDelegateWithFixedCrossAxisCount(
-                                          crossAxisCount: 2,
-                                          childAspectRatio: 5,
-                                        ),
-                                    shrinkWrap: true,
-                                    children: [
-                                      Card(
-                                        child: Center(
-                                          child: Text("Mountain Tours"),
-                                        ),
+                      InkWell(
+                        onTap: () {
+                          setState(() {
+                            selectedAgency = 0;
+                          });
+                        },
+                        child: Card(
+                          color: selectedAgency == 0
+                              ? Colors.blue.shade100
+                              : Colors.white,
+                          elevation: selectedAgency == 0 ? 6 : 1,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            side: BorderSide(
+                              color: selectedAgency == 0
+                                  ? Colors.blue
+                                  : Colors.grey.shade300,
+                              width: 2,
+                            ),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(15),
+                            child: Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Icon(
+                                      Icons.add_a_photo,
+                                      size: 50,
+                                      color: Colors.brown,
+                                    ),
+                                    Text("Mountain \nAdventures"),
+                                    Text("Rs\n5000"),
+                                  ],
+                                ),
+                                Text("⭐ 4.8 (200 reviews)"),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: SizedBox(
+                                    width: 300,
+                                    child: GridView(
+                                      gridDelegate:
+                                          SliverGridDelegateWithFixedCrossAxisCount(
+                                        crossAxisCount: 2,
+                                        childAspectRatio: 5,
                                       ),
-                                      Card(
-                                        child: Center(
-                                          child: Text("Adventure Travels"),
+                                      shrinkWrap: true,
+                                      children: [
+                                        Card(
+                                          child: Center(
+                                              child: Text("Mountain Tours")),
                                         ),
-                                      ),
-                                      Card(
-                                        child: Center(
-                                          child: Text("Photography"),
+                                        Card(
+                                          child: Center(
+                                              child:
+                                                  Text("Adventure Travels")),
                                         ),
-                                      ),
-                                    ],
+                                        Card(
+                                          child: Center(
+                                              child: Text("Photography")),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ),
-                      Card(
-                        child: Padding(
-                          padding: const EdgeInsets.all(15),
-                          child: Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  Icon(
-                                    Icons.location_on_outlined,
-                                    size: 50,
-                                    color: Colors.green,
-                                  ),
-                                  Text("City \nExplorers"),
-                                  Text("Rs\n4000"),
-                                ],
-                              ),
-                              Text("⭐ 4.6 (150 reviews)"),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: SizedBox(
-                                  width: 300,
-                                  child: GridView(
-                                    gridDelegate:
-                                        SliverGridDelegateWithFixedCrossAxisCount(
-                                          crossAxisCount: 2,
-                                          childAspectRatio: 5,
-                                        ),
-                                    shrinkWrap: true,
-                                    children: [
-                                      Card(
-                                        child: Center(
-                                          child: Text("City Tours"),
-                                        ),
+                      SizedBox(height: 10),
+
+                      InkWell(
+                        onTap: () {
+                          setState(() {
+                            selectedAgency = 1;
+                          });
+                        },
+                        child: Card(
+                          color: selectedAgency == 1
+                              ? Colors.blue.shade100
+                              : Colors.white,
+                          elevation: selectedAgency == 1 ? 6 : 1,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            side: BorderSide(
+                              color: selectedAgency == 1
+                                  ? Colors.blue
+                                  : Colors.grey.shade300,
+                              width: 2,
+                            ),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(15),
+                            child: Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Icon(
+                                      Icons.location_on_outlined,
+                                      size: 50,
+                                      color: Colors.green,
+                                    ),
+                                    Text("City \nExplorers"),
+                                    Text("Rs\n4000"),
+                                  ],
+                                ),
+                                Text("⭐ 4.6 (150 reviews)"),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: SizedBox(
+                                    width: 300,
+                                    child: GridView(
+                                      gridDelegate:
+                                          SliverGridDelegateWithFixedCrossAxisCount(
+                                        crossAxisCount: 2,
+                                        childAspectRatio: 5,
                                       ),
-                                      Card(
-                                        child: Center(
-                                          child: Text("Cultural Experiences"),
+                                      shrinkWrap: true,
+                                      children: [
+                                        Card(
+                                          child: Center(child: Text("City Tours")),
                                         ),
-                                      ),
-                                      Card(
-                                        child: Center(
-                                          child: Text("Food & Dining"),
+                                        Card(
+                                          child: Center(
+                                              child:
+                                                  Text("Cultural Experiences")),
                                         ),
-                                      ),
-                                    ],
+                                        Card(
+                                          child: Center(
+                                              child: Text("Food & Dining")),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ),
                     ],
                   ),
                 ),
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -189,7 +228,9 @@ class _Agency extends State<Agency> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        
+                      },
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
                           vertical: 10,
@@ -197,10 +238,7 @@ class _Agency extends State<Agency> {
                         ),
                         child: Row(
                           children: [
-                            Text(
-                              "Continue",
-                              style: TextStyle(color: Colors.white),
-                            ),
+                            Text("Continue", style: TextStyle(color: Colors.white)),
                             Icon(Icons.arrow_forward, color: Colors.white),
                           ],
                         ),

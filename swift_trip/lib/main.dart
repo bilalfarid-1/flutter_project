@@ -1,6 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:swift_trip/screen/login_screen.dart';
+import 'package:swift_trip/screen/destination.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 
 void main() async {
@@ -33,7 +33,7 @@ void main() async {
       title: 'Tourist App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(scaffoldBackgroundColor: Color(0xFFDFF2FE)),
-      home: LoginScreen(),
+      home: destination(),
     ),
   );
 }
