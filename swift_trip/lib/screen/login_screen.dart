@@ -108,13 +108,29 @@ class _LoginScreenState extends State<LoginScreen> {
                               );
                             }
                           },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Theme.of(
+                              context,
+                            ).colorScheme.primary,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
                           child: const Text('Login'),
                         ),
                       ),
                       const SizedBox(height: 8),
-                      TextButton(
-                        onPressed: () {},
-                        child: const Text('Forgot Password'),
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: TextButton(
+                          onPressed: () {},
+                          style: TextButton.styleFrom(
+                            foregroundColor: Theme.of(
+                              context,
+                            ).colorScheme.primary,
+                          ),
+                          child: const Text('Forgot Password'),
+                        ),
                       ),
                       const SizedBox(height: 12),
                       Text.rich(
