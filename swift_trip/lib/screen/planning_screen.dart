@@ -56,7 +56,10 @@ class _PlanningScreenState extends State<PlanningScreen> {
 
               DayViseCard(),
 
-              BottomButtons(),
+              BottomButtons(
+                back: "Back",
+                next: "Next",
+              ),
             ],
           ),
         ),
