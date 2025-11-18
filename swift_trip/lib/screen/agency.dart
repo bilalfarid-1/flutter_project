@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:swift_trip/screen/AppBar.dart';
 import 'package:swift_trip/screen/destination.dart';
+import 'package:swift_trip/screen/planning_screen.dart';
 
 class Agency extends StatefulWidget {
   const Agency({super.key});
@@ -229,7 +230,7 @@ class _Agency extends State<Agency> {
                         ),
                       ),
                       onPressed: () {
-                        
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => PlanningScreen()));
                       },
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
