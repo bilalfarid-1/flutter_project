@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class BottomButtons extends StatelessWidget {
-  final String back;
-  final String next;
+  final Widget back;
+  final Widget next;
   const BottomButtons({super.key, required this.back, required this.next});
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,14 @@ class BottomButtons extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => back, 
+                          ),
+                        );
+                      },
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
                           vertical: 10,
@@ -52,7 +59,14 @@ class BottomButtons extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => next, 
+                          ),
+                        );
+                      },
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
                           vertical: 10,

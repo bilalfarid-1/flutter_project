@@ -3,6 +3,8 @@ import 'package:swift_trip/screen/Appbar.dart';
 import 'package:swift_trip/ArrivalDayCard.dart';
 import 'package:swift_trip/DayViseCard.dart';
 import 'package:swift_trip/BottomButtons.dart';
+import 'package:swift_trip/screen/agency.dart';
+import 'package:swift_trip/screen/summary.dart';
 
 class PlanningScreen extends StatefulWidget {
   const PlanningScreen({super.key});
@@ -57,8 +59,8 @@ class _PlanningScreenState extends State<PlanningScreen> {
               DayViseCard(),
 
               BottomButtons(
-                back: "Back",
-                next: "Next",
+                back: Agency(),
+                next: Summary(),
               ),
             ],
           ),
