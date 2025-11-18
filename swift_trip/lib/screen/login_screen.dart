@@ -11,6 +11,16 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final _formKey = GlobalKey<FormState>();
+  final TextEditingController _emailCtrl = TextEditingController();
+  final TextEditingController _passwordCtrl = TextEditingController();
+  @override
+  void dispose() {
+    _emailCtrl.dispose();
+    _passwordCtrl.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(context) {
     return Scaffold(
@@ -37,21 +47,40 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(height: 20),
 
                 Form(
+                  key: _formKey,
                   child: Column(
                     children: [
                       TextFormField(
+                        controller: _emailCtrl,
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           hintText: 'Enter your Email',
+                          prefixIcon: Icon(Icons.email),
                         ),
+                        keyboardType: TextInputType.emailAddress,
+                        validator: (v) {
+                          if (v == null || v.trim().isEmpty)
+                            return 'Please enter your email';
+                          if (!v.contains('@')) return 'Enter a valid email';
+                          return null;
+                        },
                       ),
                       const SizedBox(height: 12),
-                      TextField(
+                      TextFormField(
+                        controller: _passwordCtrl,
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           hintText: 'Enter your Password',
+                          prefixIcon: Icon(Icons.lock),
                         ),
                         obscureText: true,
+                        validator: (v) {
+                          if (v == null || v.isEmpty)
+                            return 'Please enter your password';
+                          if (v.length < 6)
+                            return 'Password must be at least 6 characters';
+                          return null;
+                        },
                       ),
                       const SizedBox(height: 12),
                       SizedBox(
@@ -59,12 +88,14 @@ class _LoginScreenState extends State<LoginScreen> {
                         height: 48,
                         child: ElevatedButton(
                           onPressed: () {
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => destination(),
-                              ),
-                            );
+                            if (_formKey.currentState?.validate() ?? false) {
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => destination(),
+                                ),
+                              );
+                            }
                           },
                           child: const Text('Login'),
                         ),
