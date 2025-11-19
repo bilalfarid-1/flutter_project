@@ -15,6 +15,24 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailCtrl = TextEditingController();
   final TextEditingController _passwordCtrl = TextEditingController();
   bool _obscurePassword = true;
+  bool _isFormValid = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _emailCtrl.addListener(_updateFormValid);
+    _passwordCtrl.addListener(_updateFormValid);
+    _updateFormValid();
+  }
+
+  void _updateFormValid() {
+    final email = _emailCtrl.text;
+    final pass = _passwordCtrl.text;
+    final valid =
+        email.trim().isNotEmpty && email.contains('@') && pass.length >= 6;
+    if (valid != _isFormValid) setState(() => _isFormValid = valid);
+  }
+
   @override
   void dispose() {
     _emailCtrl.dispose();
@@ -98,16 +116,19 @@ class _LoginScreenState extends State<LoginScreen> {
                         width: double.infinity,
                         height: 48,
                         child: ElevatedButton(
-                          onPressed: () {
-                            if (_formKey.currentState?.validate() ?? false) {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => destination(),
-                                ),
-                              );
-                            }
-                          },
+                          onPressed: _isFormValid
+                              ? () {
+                                  if (_formKey.currentState?.validate() ??
+                                      false) {
+                                    Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => destination(),
+                                      ),
+                                    );
+                                  }
+                                }
+                              : null,
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Theme.of(
                               context,
