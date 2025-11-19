@@ -17,9 +17,24 @@ class _SignupScreenState extends State<SignupScreen> {
   final _confirmCtrl = TextEditingController();
   bool _obscurePassword = true;
   bool _obscureConfirm = true;
+  bool _isFormValid = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _nameCtrl.addListener(_updateFormValid);
+    _emailCtrl.addListener(_updateFormValid);
+    _passwordCtrl.addListener(_updateFormValid);
+    _confirmCtrl.addListener(_updateFormValid);
+    _updateFormValid();
+  }
 
   @override
   void dispose() {
+    _nameCtrl.removeListener(_updateFormValid);
+    _emailCtrl.removeListener(_updateFormValid);
+    _passwordCtrl.removeListener(_updateFormValid);
+    _confirmCtrl.removeListener(_updateFormValid);
     _nameCtrl.dispose();
     _emailCtrl.dispose();
     _phoneCtrl.dispose();
@@ -34,6 +49,20 @@ class _SignupScreenState extends State<SignupScreen> {
         context,
       ).showSnackBar(const SnackBar(content: Text('Account created (demo)')));
     }
+  }
+
+  void _updateFormValid() {
+    final name = _nameCtrl.text;
+    final email = _emailCtrl.text;
+    final pass = _passwordCtrl.text;
+    final confirm = _confirmCtrl.text;
+    final valid =
+        name.trim().isNotEmpty &&
+        email.trim().isNotEmpty &&
+        email.contains('@') &&
+        pass.length >= 6 &&
+        confirm == pass;
+    if (valid != _isFormValid) setState(() => _isFormValid = valid);
   }
 
   @override
@@ -157,7 +186,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         width: double.infinity,
                         height: 48,
                         child: ElevatedButton(
-                          onPressed: _submit,
+                          onPressed: _isFormValid ? _submit : null,
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Theme.of(
                               context,
