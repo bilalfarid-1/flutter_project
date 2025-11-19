@@ -188,14 +188,27 @@ class _SignupScreenState extends State<SignupScreen> {
                         child: ElevatedButton(
                           onPressed: _isFormValid ? _submit : null,
                           style: ElevatedButton.styleFrom(
+                            foregroundColor: Colors.white,
+                            disabledForegroundColor: Colors.white.withOpacity(
+                              0.9,
+                            ),
                             backgroundColor: Theme.of(
                               context,
                             ).colorScheme.primary,
+                            disabledBackgroundColor: Theme.of(
+                              context,
+                            ).colorScheme.primary.withOpacity(0.9),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),
                             ),
                           ),
-                          child: const Text('Create Account'),
+                          child: Text(
+                            'Create Account',
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
                         ),
                       ),
                     ],
