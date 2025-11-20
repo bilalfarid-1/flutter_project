@@ -230,8 +230,14 @@ class _SignupScreenState extends State<SignupScreen> {
                           labelText: 'Role',
                         ),
                         items: const [
-                          DropdownMenuItem(value: 'tourist', child: Text('Tourist')),
-                          DropdownMenuItem(value: 'organizer', child: Text('Organizer')),
+                          DropdownMenuItem(
+                            value: 'tourist',
+                            child: Text('Tourist'),
+                          ),
+                          DropdownMenuItem(
+                            value: 'organizer',
+                            child: Text('Organizer'),
+                          ),
                         ],
                         onChanged: (v) {
                           if (v == null) return;
