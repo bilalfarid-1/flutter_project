@@ -22,6 +22,7 @@ class _SignupScreenState extends State<SignupScreen> {
   bool _obscureConfirm = true;
   bool _isFormValid = false;
   bool _isLoading = false;
+  String _selectedRole = 'tourist';
 
   @override
   void initState() {
@@ -64,6 +65,7 @@ class _SignupScreenState extends State<SignupScreen> {
           'name': name,
           'email': email,
           'phone': phone,
+          'role': _selectedRole,
           'createdAt': FieldValue.serverTimestamp(),
         });
       }
@@ -218,6 +220,22 @@ class _SignupScreenState extends State<SignupScreen> {
                           if (v != _passwordCtrl.text)
                             return 'Passwords do not match';
                           return null;
+                        },
+                      ),
+                      const SizedBox(height: 12),
+                      DropdownButtonFormField<String>(
+                        value: _selectedRole,
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: 'Role',
+                        ),
+                        items: const [
+                          DropdownMenuItem(value: 'tourist', child: Text('Tourist')),
+                          DropdownMenuItem(value: 'organizer', child: Text('Organizer')),
+                        ],
+                        onChanged: (v) {
+                          if (v == null) return;
+                          setState(() => _selectedRole = v);
                         },
                       ),
                       const SizedBox(height: 16),
