@@ -142,7 +142,20 @@ class _LoginScreenState extends State<LoginScreen> {
                                           .doc(uid)
                                           .get();
                                       final userData = doc.data();
-                                      // You can store userData in app state if needed
+                                      final name = userData?['name'] ?? 'User';
+                                      final role = userData?['role'] ?? 'user';
+                                      if (mounted) {
+                                        ScaffoldMessenger.of(
+                                          context,
+                                        ).showSnackBar(
+                                          SnackBar(
+                                            content: Text(
+                                              'Welcome back, $name! You are logged in as a $role.',
+                                            ),
+                                          ),
+                                        );
+                                      }
+                                      // TODO: Route user based on their role (e.g. tourist -> TouristHome, organizer -> OrganizerDashboard)
                                     }
 
                                     Navigator.pushReplacement(
