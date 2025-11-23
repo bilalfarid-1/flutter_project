@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class AddPackageScreen extends StatefulWidget {
   const AddPackageScreen({super.key});
@@ -20,6 +22,9 @@ class _AddPackageScreenState extends State<AddPackageScreen> {
   // Date state
   DateTime startDate = DateTime.now();
   DateTime endDate = DateTime.now().add(const Duration(days: 1));
+
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  bool _isSaving = false;
 
   @override
   void dispose() {
@@ -43,6 +48,7 @@ class _AddPackageScreenState extends State<AddPackageScreen> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Form(
+              key: _formKey,
               child: Column(
                 children: [
                   TextFormField(
@@ -145,8 +151,29 @@ class _AddPackageScreenState extends State<AddPackageScreen> {
                     ],
                   ),
                   const SizedBox(height: 24),
-                  // Save button will be added in Step 3
-                  const SizedBox.shrink(),
+                  SizedBox(
+                    width: double.infinity,
+                    height: 48,
+                    child: ElevatedButton(
+                      onPressed: _isSaving
+                          ? null
+                          : () async {
+                              await _savePackage();
+                            },
+                      child: _isSaving
+                          ? const SizedBox(
+                              width: 20,
+                              height: 20,
+                              child: CircularProgressIndicator(
+                                strokeWidth: 2,
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                  Colors.white,
+                                ),
+                              ),
+                            )
+                          : const Text('Save Package'),
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -154,5 +181,64 @@ class _AddPackageScreenState extends State<AddPackageScreen> {
         ),
       ),
     );
+  }
+
+  Future<void> _savePackage() async {
+    if (!(_formKey.currentState?.validate() ?? false)) return;
+    setState(() => _isSaving = true);
+    try {
+      final uid = FirebaseAuth.instance.currentUser?.uid;
+      if (uid == null) {
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('You must be signed in to add a package'),
+            ),
+          );
+        }
+        return;
+      }
+
+      final title = _titleCtrl.text.trim();
+      final fromCity = _fromCityCtrl.text.trim();
+      final toCity = _toCityCtrl.text.trim();
+      final description = _descriptionCtrl.text.trim();
+      final imageUrl = _imageUrlCtrl.text.trim();
+      final price = double.tryParse(_priceCtrl.text.trim()) ?? 0.0;
+      final totalSeats = int.tryParse(_totalSeatsCtrl.text.trim()) ?? 0;
+
+      final data = {
+        'title': title,
+        'fromCity': fromCity,
+        'toCity': toCity,
+        'description': description,
+        'imageUrl': imageUrl,
+        'price': price,
+        'totalSeats': totalSeats,
+        'seatsLeft': totalSeats,
+        'startDate': Timestamp.fromDate(startDate),
+        'endDate': Timestamp.fromDate(endDate),
+        'organizerId': uid,
+        'status': 'active',
+        'createdAt': FieldValue.serverTimestamp(),
+      };
+
+      await FirebaseFirestore.instance.collection('packages').add(data);
+
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Package saved successfully')),
+        );
+        Navigator.of(context).pop();
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Failed to save package: $e')));
+      }
+    } finally {
+      if (mounted) setState(() => _isSaving = false);
+    }
   }
 }
