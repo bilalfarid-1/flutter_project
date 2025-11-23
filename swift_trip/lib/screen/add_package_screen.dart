@@ -37,7 +37,122 @@ class _AddPackageScreenState extends State<AddPackageScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Add Package')),
-      body: const Center(child: Text('')),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Form(
+              child: Column(
+                children: [
+                  TextFormField(
+                    controller: _titleCtrl,
+                    decoration: const InputDecoration(
+                      labelText: 'Title',
+                      border: OutlineInputBorder(),
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  TextFormField(
+                    controller: _fromCityCtrl,
+                    decoration: const InputDecoration(
+                      labelText: 'From City',
+                      border: OutlineInputBorder(),
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  TextFormField(
+                    controller: _toCityCtrl,
+                    decoration: const InputDecoration(
+                      labelText: 'To City',
+                      border: OutlineInputBorder(),
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  TextFormField(
+                    controller: _priceCtrl,
+                    decoration: const InputDecoration(
+                      labelText: 'Price',
+                      border: OutlineInputBorder(),
+                    ),
+                    keyboardType: TextInputType.number,
+                  ),
+                  const SizedBox(height: 12),
+                  TextFormField(
+                    controller: _totalSeatsCtrl,
+                    decoration: const InputDecoration(
+                      labelText: 'Total Seats',
+                      border: OutlineInputBorder(),
+                    ),
+                    keyboardType: TextInputType.number,
+                  ),
+                  const SizedBox(height: 12),
+                  TextFormField(
+                    controller: _descriptionCtrl,
+                    decoration: const InputDecoration(
+                      labelText: 'Description',
+                      border: OutlineInputBorder(),
+                    ),
+                    maxLines: 4,
+                  ),
+                  const SizedBox(height: 12),
+                  TextFormField(
+                    controller: _imageUrlCtrl,
+                    decoration: const InputDecoration(
+                      labelText: 'Image URL',
+                      border: OutlineInputBorder(),
+                    ),
+                    keyboardType: TextInputType.url,
+                  ),
+                  const SizedBox(height: 16),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: ElevatedButton(
+                          onPressed: () async {
+                            final picked = await showDatePicker(
+                              context: context,
+                              initialDate: startDate,
+                              firstDate: DateTime(2000),
+                              lastDate: DateTime(2100),
+                            );
+                            if (picked != null)
+                              setState(() => startDate = picked);
+                          },
+                          child: Text(
+                            'Start Date: ${startDate.toLocal().toString().split(' ')[0]}',
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: ElevatedButton(
+                          onPressed: () async {
+                            final picked = await showDatePicker(
+                              context: context,
+                              initialDate: endDate,
+                              firstDate: DateTime(2000),
+                              lastDate: DateTime(2100),
+                            );
+                            if (picked != null)
+                              setState(() => endDate = picked);
+                          },
+                          child: Text(
+                            'End Date: ${endDate.toLocal().toString().split(' ')[0]}',
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 24),
+                  // Save button will be added in Step 3
+                  const SizedBox.shrink(),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
