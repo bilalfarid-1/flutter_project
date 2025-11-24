@@ -26,6 +26,28 @@ class _AddPackageScreenState extends State<AddPackageScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool _isSaving = false;
 
+  // Helper: boxed input decoration for consistent field styling
+  InputDecoration _buildInputDecoration(String label, {Widget? suffixIcon}) {
+    return InputDecoration(
+      labelText: label,
+      filled: true,
+      fillColor: Colors.white,
+      border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+      suffixIcon: suffixIcon,
+    );
+  }
+
+  // Helper: section header widget
+  Widget _buildSectionHeader(String title) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 20.0, bottom: 8.0),
+      child: Text(
+        title,
+        style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.grey),
+      ),
+    );
+  }
+
   @override
   void dispose() {
     _titleCtrl.dispose();
@@ -41,6 +63,7 @@ class _AddPackageScreenState extends State<AddPackageScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[50],
       appBar: AppBar(title: const Text('Add Package')),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
