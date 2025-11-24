@@ -74,48 +74,86 @@ class _AddPackageScreenState extends State<AddPackageScreen> {
               key: _formKey,
               child: Column(
                 children: [
+                  // PACKAGE DETAILS
+                  _buildSectionHeader('PACKAGE DETAILS'),
                   TextFormField(
                     controller: _titleCtrl,
-                    decoration: const InputDecoration(
-                      labelText: 'Title',
-                      border: OutlineInputBorder(),
-                    ),
+                    decoration: _buildInputDecoration('Title'),
                   ),
                   const SizedBox(height: 12),
                   TextFormField(
                     controller: _fromCityCtrl,
-                    decoration: const InputDecoration(
-                      labelText: 'From City',
-                      border: OutlineInputBorder(),
-                    ),
+                    decoration: _buildInputDecoration('From City'),
                   ),
                   const SizedBox(height: 12),
                   TextFormField(
                     controller: _toCityCtrl,
-                    decoration: const InputDecoration(
-                      labelText: 'To City',
-                      border: OutlineInputBorder(),
-                    ),
+                    decoration: _buildInputDecoration('To City'),
                   ),
                   const SizedBox(height: 12),
                   TextFormField(
                     controller: _priceCtrl,
-                    decoration: const InputDecoration(
-                      labelText: 'Price',
-                      border: OutlineInputBorder(),
-                    ),
+                    decoration: _buildInputDecoration('Price'),
                     keyboardType: TextInputType.number,
                   ),
-                  const SizedBox(height: 12),
+
+                  const SizedBox(height: 16),
+
+                  // CAPACITY & DATES
+                  _buildSectionHeader('CAPACITY & DATES'),
                   TextFormField(
                     controller: _totalSeatsCtrl,
-                    decoration: const InputDecoration(
-                      labelText: 'Total Seats',
-                      border: OutlineInputBorder(),
-                    ),
+                    decoration: _buildInputDecoration('Total Seats'),
                     keyboardType: TextInputType.number,
                   ),
                   const SizedBox(height: 12),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: TextFormField(
+                          controller: TextEditingController(
+                            text: startDate.toLocal().toString().split(' ')[0],
+                          ),
+                          readOnly: true,
+                          decoration: _buildInputDecoration('Start Date'),
+                          onTap: () async {
+                            final picked = await showDatePicker(
+                              context: context,
+                              initialDate: startDate,
+                              firstDate: DateTime(2000),
+                              lastDate: DateTime(2100),
+                            );
+                            if (picked != null)
+                              setState(() => startDate = picked);
+                          },
+                        ),
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: TextFormField(
+                          controller: TextEditingController(
+                            text: endDate.toLocal().toString().split(' ')[0],
+                          ),
+                          readOnly: true,
+                          decoration: _buildInputDecoration('End Date'),
+                          onTap: () async {
+                            final picked = await showDatePicker(
+                              context: context,
+                              initialDate: endDate,
+                              firstDate: DateTime(2000),
+                              lastDate: DateTime(2100),
+                            );
+                            if (picked != null)
+                              setState(() => endDate = picked);
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  const SizedBox(height: 16),
+
+                  // remaining fields
                   TextFormField(
                     controller: _descriptionCtrl,
                     decoration: const InputDecoration(
@@ -132,46 +170,6 @@ class _AddPackageScreenState extends State<AddPackageScreen> {
                       border: OutlineInputBorder(),
                     ),
                     keyboardType: TextInputType.url,
-                  ),
-                  const SizedBox(height: 16),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: ElevatedButton(
-                          onPressed: () async {
-                            final picked = await showDatePicker(
-                              context: context,
-                              initialDate: startDate,
-                              firstDate: DateTime(2000),
-                              lastDate: DateTime(2100),
-                            );
-                            if (picked != null)
-                              setState(() => startDate = picked);
-                          },
-                          child: Text(
-                            'Start Date: ${startDate.toLocal().toString().split(' ')[0]}',
-                          ),
-                        ),
-                      ),
-                      const SizedBox(width: 12),
-                      Expanded(
-                        child: ElevatedButton(
-                          onPressed: () async {
-                            final picked = await showDatePicker(
-                              context: context,
-                              initialDate: endDate,
-                              firstDate: DateTime(2000),
-                              lastDate: DateTime(2100),
-                            );
-                            if (picked != null)
-                              setState(() => endDate = picked);
-                          },
-                          child: Text(
-                            'End Date: ${endDate.toLocal().toString().split(' ')[0]}',
-                          ),
-                        ),
-                      ),
-                    ],
                   ),
                   const SizedBox(height: 24),
                   SizedBox(
