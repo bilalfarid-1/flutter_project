@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:swift_trip/screen/destination.dart';
 import 'package:swift_trip/screen/signup_screen.dart';
+import 'package:swift_trip/screen/add_package_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -143,7 +144,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                           .get();
                                       final userData = doc.data();
                                       final name = userData?['name'] ?? 'User';
-                                      final role = userData?['role'] ?? 'user';
+                                      final role = (userData?['role'] ?? 'user')
+                                          .toString()
+                                          .toLowerCase();
                                       if (mounted) {
                                         ScaffoldMessenger.of(
                                           context,
@@ -155,15 +158,31 @@ class _LoginScreenState extends State<LoginScreen> {
                                           ),
                                         );
                                       }
-                                      // TODO: Route user based on their role (e.g. tourist -> TouristHome, organizer -> OrganizerDashboard)
-                                    }
 
-                                    Navigator.pushReplacement(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => destination(),
-                                      ),
-                                    );
+                                      if (role == 'organizer') {
+                                        Navigator.pushReplacement(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                const AddPackageScreen(),
+                                          ),
+                                        );
+                                      } else {
+                                        Navigator.pushReplacement(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => destination(),
+                                          ),
+                                        );
+                                      }
+                                    } else {
+                                      Navigator.pushReplacement(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => destination(),
+                                        ),
+                                      );
+                                    }
                                   } on FirebaseAuthException catch (e) {
                                     final message =
                                         e.message ?? 'Authentication error';
