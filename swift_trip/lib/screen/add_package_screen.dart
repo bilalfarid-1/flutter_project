@@ -153,34 +153,67 @@ class _AddPackageScreenState extends State<AddPackageScreen> {
 
                   const SizedBox(height: 16),
 
-                  // remaining fields
+                  // DESCRIPTION section
+                  _buildSectionHeader('DESCRIPTION'),
                   TextFormField(
                     controller: _descriptionCtrl,
-                    decoration: const InputDecoration(
-                      labelText: 'Description',
-                      border: OutlineInputBorder(),
-                    ),
+                    decoration: _buildInputDecoration('Description'),
                     maxLines: 4,
+                    maxLength: 500,
                   ),
                   const SizedBox(height: 12),
-                  TextFormField(
-                    controller: _imageUrlCtrl,
-                    decoration: const InputDecoration(
-                      labelText: 'Image URL',
-                      border: OutlineInputBorder(),
-                    ),
-                    keyboardType: TextInputType.url,
+
+                  // IMAGE URL section with live preview
+                  _buildSectionHeader('IMAGE URL'),
+                  ValueListenableBuilder<TextEditingValue>(
+                    valueListenable: _imageUrlCtrl,
+                    builder: (context, value, child) {
+                      final url = value.text.trim();
+                      final Widget suffix = url.isNotEmpty
+                          ? ClipRRect(
+                              borderRadius: BorderRadius.circular(8),
+                              child: Image.network(
+                                url,
+                                fit: BoxFit.cover,
+                                width: 40,
+                                height: 40,
+                                errorBuilder: (ctx, err, st) => const Icon(
+                                  Icons.broken_image,
+                                  color: Colors.grey,
+                                ),
+                              ),
+                            )
+                          : const Icon(Icons.image, color: Colors.grey);
+
+                      return TextFormField(
+                        controller: _imageUrlCtrl,
+                        decoration: _buildInputDecoration(
+                          'Image URL',
+                          suffixIcon: Padding(
+                            padding: const EdgeInsets.all(6.0),
+                            child: suffix,
+                          ),
+                        ),
+                        keyboardType: TextInputType.url,
+                      );
+                    },
                   ),
                   const SizedBox(height: 24),
+
+                  // SAVE BUTTON (styled)
                   SizedBox(
                     width: double.infinity,
                     height: 48,
                     child: ElevatedButton(
                       onPressed: _isSaving
                           ? null
-                          : () async {
-                              await _savePackage();
-                            },
+                          : () async => await _savePackage(),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.blueAccent,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
                       child: _isSaving
                           ? const SizedBox(
                               width: 20,
@@ -192,7 +225,10 @@ class _AddPackageScreenState extends State<AddPackageScreen> {
                                 ),
                               ),
                             )
-                          : const Text('Save Package'),
+                          : const Text(
+                              'Save Package',
+                              style: TextStyle(color: Colors.white),
+                            ),
                     ),
                   ),
                 ],
