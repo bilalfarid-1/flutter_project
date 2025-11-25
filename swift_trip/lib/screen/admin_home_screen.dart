@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:swift_trip/screen/login_screen.dart';
+import 'package:swift_trip/screen/add_package_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:swift_trip/screen/admin_package_card.dart';
 
@@ -39,6 +40,16 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const AddPackageScreen()),
+          );
+        },
+        tooltip: 'Add Package',
+        child: const Icon(Icons.add),
+      ),
       appBar: AppBar(
         title: const Text('Admin Dashboard'),
         actions: [
