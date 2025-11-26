@@ -37,6 +37,87 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
     }
   }
 
+  Future<void> _deletePackage(String packageId) async {
+    try {
+      await FirebaseFirestore.instance
+          .collection('packages')
+          .doc(packageId)
+          .delete();
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Package deleted successfully')),
+        );
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Failed to delete package: $e')));
+      }
+    }
+  }
+
+  Future<void> _showDeleteConfirmationDialog({
+    required String packageId,
+    required String packageName,
+  }) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext dialogContext) {
+        return AlertDialog(
+          title: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.red[50],
+                ),
+                padding: const EdgeInsets.all(12),
+                child: Icon(
+                  Icons.delete_forever,
+                  color: Colors.red[700],
+                  size: 28,
+                ),
+              ),
+              const SizedBox(height: 16),
+              Text(
+                'Delete \'$packageName\'?',
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
+          content: Text(
+            'This action is irreversible. All data associated with this package, including bookings and itineraries, will be permanently deleted. Are you sure you want to proceed?',
+            style: TextStyle(color: Colors.grey[700]),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(dialogContext).pop(),
+              style: TextButton.styleFrom(foregroundColor: Colors.grey[600]),
+              child: const Text('Cancel'),
+            ),
+            ElevatedButton(
+              onPressed: () async {
+                await _deletePackage(packageId);
+                if (mounted) {
+                  Navigator.of(dialogContext).pop();
+                }
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.red[700],
+                foregroundColor: Colors.white,
+              ),
+              child: const Text('Confirm Delete'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,7 +160,14 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
               final doc = docs[index];
               final data = doc.data() as Map<String, dynamic>;
               final id = doc.id;
-              return AdminPackageCard(data: data, docId: id);
+              return AdminPackageCard(
+                data: data,
+                docId: id,
+                onDelete: (docId, packageName) => _showDeleteConfirmationDialog(
+                  packageId: docId,
+                  packageName: packageName,
+                ),
+              );
             },
           );
         },
