@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:swift_trip/screen/AppBar.dart';
+import 'package:swift_trip/screen/buttons.dart';
 
 class PaymentScreen extends StatefulWidget {
   const PaymentScreen({super.key});
@@ -165,6 +166,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                 ),
               ),
             ),
+            Buttons(nextScreen: PaymentScreen())
           ],
         ),
       ),

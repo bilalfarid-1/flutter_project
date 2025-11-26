@@ -52,7 +52,7 @@ class Appbar extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               buttonBuild(context, 0, "Destination"),
-              buttonBuild(context, 1, "Package"),
+              buttonBuild(context, 1, "Packages"),
               buttonBuild(context, 2, "Payment"),
             ],
           ),

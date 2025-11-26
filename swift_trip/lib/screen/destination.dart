@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:swift_trip/screen/Appbar.dart';
+import 'package:swift_trip/screen/Package.dart';
 
 class destination extends StatefulWidget {
   const destination({super.key});
@@ -229,10 +230,10 @@ class _destinationState extends State<destination> {
                     ),
                     child: ElevatedButton(
                       onPressed: () {
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(builder: (context) => Agency()),
-                        // );
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => PackageScreen()),
+                        );
                       },
                       style: ElevatedButton.styleFrom(
                         foregroundColor: Colors.white,

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:swift_trip/screen/AppBar.dart';
-import 'package:swift_trip/screen/destination.dart';
+import 'package:swift_trip/screen/buttons.dart';
 import 'package:swift_trip/screen/payment_screen.dart';
+
 class PackageScreen extends StatefulWidget {
   const PackageScreen({super.key});
   @override
@@ -10,7 +11,7 @@ class PackageScreen extends StatefulWidget {
 
 class _PackageScreen extends State<PackageScreen> {
   int selectedIndex = 1;
-  int selectedAgency = 0; 
+  int selectedAgency = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -26,10 +27,7 @@ class _PackageScreen extends State<PackageScreen> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                Text(
-                  "Choose Your Package",
-                  style: TextStyle(fontSize: 18),
-                ),
+                Text("Choose Your Package", style: TextStyle(fontSize: 18)),
                 Padding(
                   padding: EdgeInsets.only(top: 20, bottom: 15),
                   child: Text(
@@ -86,23 +84,25 @@ class _PackageScreen extends State<PackageScreen> {
                                     child: GridView(
                                       gridDelegate:
                                           SliverGridDelegateWithFixedCrossAxisCount(
-                                        crossAxisCount: 2,
-                                        childAspectRatio: 5,
-                                      ),
+                                            crossAxisCount: 2,
+                                            childAspectRatio: 5,
+                                          ),
                                       shrinkWrap: true,
                                       children: [
                                         Card(
                                           child: Center(
-                                              child: Text("Mountain Tours")),
+                                            child: Text("Mountain Tours"),
+                                          ),
                                         ),
                                         Card(
                                           child: Center(
-                                              child:
-                                                  Text("Adventure Travels")),
+                                            child: Text("Adventure Travels"),
+                                          ),
                                         ),
                                         Card(
                                           child: Center(
-                                              child: Text("Photography")),
+                                            child: Text("Photography"),
+                                          ),
                                         ),
                                       ],
                                     ),
@@ -160,22 +160,25 @@ class _PackageScreen extends State<PackageScreen> {
                                     child: GridView(
                                       gridDelegate:
                                           SliverGridDelegateWithFixedCrossAxisCount(
-                                        crossAxisCount: 2,
-                                        childAspectRatio: 5,
-                                      ),
+                                            crossAxisCount: 2,
+                                            childAspectRatio: 5,
+                                          ),
                                       shrinkWrap: true,
                                       children: [
                                         Card(
-                                          child: Center(child: Text("City Tours")),
+                                          child: Center(
+                                            child: Text("City Tours"),
+                                          ),
                                         ),
                                         Card(
                                           child: Center(
-                                              child:
-                                                  Text("Cultural Experiences")),
+                                            child: Text("Cultural Experiences"),
+                                          ),
                                         ),
                                         Card(
                                           child: Center(
-                                              child: Text("Food & Dining")),
+                                            child: Text("Food & Dining"),
+                                          ),
                                         ),
                                       ],
                                     ),
@@ -190,62 +193,7 @@ class _PackageScreen extends State<PackageScreen> {
                   ),
                 ),
 
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                      onPressed: () {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => destination(),
-                          ),
-                        );
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 10,
-                          horizontal: 25,
-                        ),
-                        child: Row(
-                          children: [
-                            Icon(Icons.arrow_back, color: Colors.black),
-                            Text("Back", style: TextStyle(color: Colors.black)),
-                          ],
-                        ),
-                      ),
-                    ),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blueAccent,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                      onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => PaymentScreen()));
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 10,
-                          horizontal: 25,
-                        ),
-                        child: Row(
-                          children: [
-                            Text("Continue", style: TextStyle(color: Colors.white)),
-                            Icon(Icons.arrow_forward, color: Colors.white),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                Buttons(nextScreen: PaymentScreen()),
               ],
             ),
           ),
