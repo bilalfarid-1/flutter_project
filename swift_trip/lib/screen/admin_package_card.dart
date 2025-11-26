@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:swift_trip/screen/edit_package_screen.dart';
 
 class AdminPackageCard extends StatelessWidget {
   final Map<String, dynamic> data;
@@ -66,7 +67,17 @@ class AdminPackageCard extends StatelessWidget {
                 children: [
                   Expanded(
                     child: TextButton.icon(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => EditPackageScreen(
+                              packageId: docId,
+                              currentData: data,
+                            ),
+                          ),
+                        );
+                      },
                       icon: const Icon(Icons.edit_outlined),
                       label: const Text('Edit'),
                       style: TextButton.styleFrom(
