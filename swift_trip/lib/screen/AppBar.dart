@@ -59,7 +59,7 @@ class Appbar extends StatelessWidget {
 
           // progress line bar
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 50.0),
+            padding: const EdgeInsets.symmetric(horizontal: 30.0),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(4),
               child: LinearProgressIndicator(
@@ -78,18 +78,7 @@ class Appbar extends StatelessWidget {
   Widget buttonBuild(BuildContext context, int index, String title) {
     bool match = selectedIndex == index;
     return TextButton(
-      onPressed: () {
-        if (index == 0) {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (_) => destination()));
-        } else if (index == 1) {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (_) => PackageScreen()));
-        } else if (index == 2) {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (_) => PaymentScreen()));
-        } 
-      },
+      onPressed: (null) ,
       child: Text(
         title,
         style: TextStyle(
