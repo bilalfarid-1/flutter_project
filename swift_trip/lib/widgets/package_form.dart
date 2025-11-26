@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class PackageForm extends StatefulWidget {
   final Map<String, dynamic>? initialData;
@@ -39,8 +40,19 @@ class _PackageFormState extends State<PackageForm> {
       _descriptionCtrl.text = (data['description'] ?? '').toString();
       _totalSeatsCtrl.text = (data['totalSeats'] ?? '').toString();
       _imageUrlCtrl.text = (data['imageUrl'] ?? '').toString();
-      if (data['startDate'] is DateTime) startDate = data['startDate'];
-      if (data['endDate'] is DateTime) endDate = data['endDate'];
+      // handle Firestore Timestamp or DateTime
+      final sd = data['startDate'];
+      if (sd is Timestamp) {
+        startDate = sd.toDate();
+      } else if (sd is DateTime) {
+        startDate = sd;
+      }
+      final ed = data['endDate'];
+      if (ed is Timestamp) {
+        endDate = ed.toDate();
+      } else if (ed is DateTime) {
+        endDate = ed;
+      }
     }
   }
 
@@ -76,24 +88,30 @@ class _PackageFormState extends State<PackageForm> {
     if (picked != null) setState(() => endDate = picked);
   }
 
-  void _handleSubmit() {
+  Future<void> _handleSubmit() async {
     if (!(_formKey.currentState?.validate() ?? false)) return;
-    final price = double.tryParse(_priceCtrl.text.trim()) ?? 0.0;
-    final totalSeats = int.tryParse(_totalSeatsCtrl.text.trim()) ?? 0;
+    setState(() => _isSaving = true);
+    try {
+      final price = double.tryParse(_priceCtrl.text.trim()) ?? 0.0;
+      final totalSeats = int.tryParse(_totalSeatsCtrl.text.trim()) ?? 0;
 
-    final formData = {
-      'title': _titleCtrl.text.trim(),
-      'fromCity': _fromCityCtrl.text.trim(),
-      'toCity': _toCityCtrl.text.trim(),
-      'price': price,
-      'description': _descriptionCtrl.text.trim(),
-      'totalSeats': totalSeats,
-      'imageUrl': _imageUrlCtrl.text.trim(),
-      'startDate': startDate,
-      'endDate': endDate,
-    };
+      final formData = {
+        'title': _titleCtrl.text.trim(),
+        'fromCity': _fromCityCtrl.text.trim(),
+        'toCity': _toCityCtrl.text.trim(),
+        'price': price,
+        'description': _descriptionCtrl.text.trim(),
+        'totalSeats': totalSeats,
+        'imageUrl': _imageUrlCtrl.text.trim(),
+        'startDate': startDate,
+        'endDate': endDate,
+      };
 
-    widget.onSubmit(formData);
+      final result = widget.onSubmit(formData);
+      if (result is Future) await result;
+    } finally {
+      if (mounted) setState(() => _isSaving = false);
+    }
   }
 
   // Helper: boxed input decoration for consistent field styling
