@@ -4,13 +4,13 @@ import 'package:swift_trip/screen/edit_package_screen.dart';
 class AdminPackageCard extends StatelessWidget {
   final Map<String, dynamic> data;
   final String docId;
-  final Function(String docId, String packageName)? onDelete;
+  final VoidCallback onDeletePressed;
 
   const AdminPackageCard({
     super.key,
     required this.data,
     required this.docId,
-    this.onDelete,
+    required this.onDeletePressed,
   });
 
   @override
@@ -99,11 +99,7 @@ class AdminPackageCard extends StatelessWidget {
                   ),
                   Expanded(
                     child: TextButton.icon(
-                      onPressed: () {
-                        if (onDelete != null) {
-                          onDelete!(docId, title);
-                        }
-                      },
+                      onPressed: onDeletePressed,
                       icon: const Icon(Icons.delete_outline),
                       label: const Text('Delete'),
                       style: TextButton.styleFrom(
