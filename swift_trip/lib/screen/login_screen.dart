@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:swift_trip/screen/admin_home_screen.dart';
 import 'package:swift_trip/screen/destination.dart';
 import 'package:swift_trip/screen/signup_screen.dart';
-import 'package:swift_trip/screen/add_package_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -164,7 +164,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) =>
-                                                const AddPackageScreen(),
+                                                const AdminHomeScreen(),
                                           ),
                                         );
                                       } else {
