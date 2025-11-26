@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:swift_trip/screen/Package.dart';
-import 'package:swift_trip/screen/destination.dart';
 import 'package:swift_trip/screen/login_screen.dart';
-import 'package:swift_trip/screen/payment_screen.dart';
 
 class Appbar extends StatelessWidget {
   final int selectedIndex; 
@@ -23,15 +20,6 @@ class Appbar extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.only(left: 25),
-                child: IconButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => LoginScreen()),
-                    );
-                  },
-                  icon: const Icon(Icons.arrow_back),
-                ),
               ),
               const Expanded(
                 child: Padding(
