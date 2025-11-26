@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:swift_trip/screen/agency.dart';
+import 'package:swift_trip/screen/Package.dart';
 import 'package:swift_trip/screen/destination.dart';
 import 'package:swift_trip/screen/login_screen.dart';
-import 'package:swift_trip/screen/planning_screen.dart';
-import 'package:swift_trip/screen/summary.dart';
 import 'package:swift_trip/screen/payment_screen.dart';
 
 class Appbar extends StatelessWidget {
@@ -12,10 +10,11 @@ class Appbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double progress = (selectedIndex + 1) / 5; 
+    final double progress = (selectedIndex + 1) / 3; 
 
     return Container(
       height: 120,
+      width: double.infinity,
       color: Colors.white,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -49,28 +48,23 @@ class Appbar extends StatelessWidget {
           ),
 
           // your step buttons
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                buttonBuild(context, 0, "Destination"),
-                buttonBuild(context, 1, "Agency"),
-                buttonBuild(context, 2, "Planning"),
-                buttonBuild(context, 3, "Summary"),
-                buttonBuild(context, 4, "Payment"),
-              ],
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              buttonBuild(context, 0, "Destination"),
+              buttonBuild(context, 1, "Package"),
+              buttonBuild(context, 2, "Payment"),
+            ],
           ),
 
           // progress line bar
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24.0),
+            padding: const EdgeInsets.symmetric(horizontal: 50.0),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(4),
               child: LinearProgressIndicator(
-                value: progress,          // 0.0 – 1.0
-                minHeight: 4,
+                value: progress,   
+                minHeight: 3,
                 backgroundColor: Colors.grey.shade300,
                 valueColor: const AlwaysStoppedAnimation(Colors.blueAccent),
               ),
@@ -90,17 +84,11 @@ class Appbar extends StatelessWidget {
               MaterialPageRoute(builder: (_) => destination()));
         } else if (index == 1) {
           Navigator.push(
-              context, MaterialPageRoute(builder: (_) => Agency()));
+              context, MaterialPageRoute(builder: (_) => PackageScreen()));
         } else if (index == 2) {
           Navigator.push(context,
-              MaterialPageRoute(builder: (_) => PlanningScreen()));
-        } else if (index == 3) {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (_) => Summary()));
-        } else if (index == 4) {
-          Navigator.push(context,
               MaterialPageRoute(builder: (_) => PaymentScreen()));
-        }
+        } 
       },
       child: Text(
         title,

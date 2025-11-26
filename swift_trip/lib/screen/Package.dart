@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:swift_trip/screen/AppBar.dart';
 import 'package:swift_trip/screen/destination.dart';
-import 'package:swift_trip/screen/planning_screen.dart';
-
-class Agency extends StatefulWidget {
-  const Agency({super.key});
+import 'package:swift_trip/screen/payment_screen.dart';
+class PackageScreen extends StatefulWidget {
+  const PackageScreen({super.key});
   @override
-  _Agency createState() => _Agency();
+  _PackageScreen createState() => _PackageScreen();
 }
 
-class _Agency extends State<Agency> {
+class _PackageScreen extends State<PackageScreen> {
   int selectedIndex = 1;
   int selectedAgency = 0; 
 
@@ -28,13 +27,13 @@ class _Agency extends State<Agency> {
             child: Column(
               children: [
                 Text(
-                  "Choose Your Travel Partner",
+                  "Choose Your Package",
                   style: TextStyle(fontSize: 18),
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 20, bottom: 15),
                   child: Text(
-                    "Select from our trusted travel agencies",
+                    "Select a package from the options below:",
                     style: TextStyle(fontSize: 15),
                   ),
                 ),
@@ -230,7 +229,7 @@ class _Agency extends State<Agency> {
                         ),
                       ),
                       onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => PlanningScreen()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => PaymentScreen()));
                       },
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
