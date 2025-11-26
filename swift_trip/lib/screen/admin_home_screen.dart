@@ -160,12 +160,13 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
               final doc = docs[index];
               final data = doc.data() as Map<String, dynamic>;
               final id = doc.id;
+              final title = (data['title'] ?? '').toString();
               return AdminPackageCard(
                 data: data,
                 docId: id,
-                onDelete: (docId, packageName) => _showDeleteConfirmationDialog(
-                  packageId: docId,
-                  packageName: packageName,
+                onDeletePressed: () => _showDeleteConfirmationDialog(
+                  packageId: id,
+                  packageName: title,
                 ),
               );
             },
