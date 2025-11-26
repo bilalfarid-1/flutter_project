@@ -1,6 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:swift_trip/screen/destination.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:swift_trip/screen/signup_screen.dart';
 
