@@ -22,7 +22,7 @@ class _SignupScreenState extends State<SignupScreen> {
   bool _obscureConfirm = true;
   bool _isFormValid = false;
   bool _isLoading = false;
-  String _selectedRole = 'tourist';
+  final String _selectedRole = 'tourist';
 
   @override
   void initState() {
@@ -221,30 +221,7 @@ class _SignupScreenState extends State<SignupScreen> {
                             return 'Passwords do not match';
                           return null;
                         },
-                      ),
-                      const SizedBox(height: 12),
-                      DropdownButtonFormField<String>(
-                        value: _selectedRole,
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: 'Role',
-                        ),
-                        items: const [
-                          DropdownMenuItem(
-                            value: 'tourist',
-                            child: Text('Tourist'),
-                          ),
-                          DropdownMenuItem(
-                            value: 'organizer',
-                            child: Text('Organizer'),
-                          ),
-                        ],
-                        onChanged: (v) {
-                          if (v == null) return;
-                          setState(() => _selectedRole = v);
-                        },
-                      ),
-                      const SizedBox(height: 16),
+                      ), const SizedBox(height: 16),
                       SizedBox(
                         width: double.infinity,
                         height: 48,
