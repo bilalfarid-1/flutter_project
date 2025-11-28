@@ -4,7 +4,9 @@ import 'package:swift_trip/screen/buttons.dart';
 import 'package:swift_trip/screen/payment_screen.dart';
 
 class PackageScreen extends StatefulWidget {
-  const PackageScreen({super.key});
+  final String fromLocation;
+  final String toLocation;
+  const PackageScreen({super.key, required this.fromLocation, required this.toLocation});
   @override
   _PackageScreen createState() => _PackageScreen();
 }

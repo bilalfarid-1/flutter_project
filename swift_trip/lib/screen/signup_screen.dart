@@ -156,8 +156,9 @@ class _SignupScreenState extends State<SignupScreen> {
                         ),
                         keyboardType: TextInputType.emailAddress,
                         validator: (v) {
-                          if (v == null || v.trim().isEmpty)
+                          if (v == null || v.trim().isEmpty) {
                             return 'Please enter your email';
+                          }
                           if (!v.contains('@')) return 'Enter a valid email';
                           return null;
                         },
@@ -215,10 +216,12 @@ class _SignupScreenState extends State<SignupScreen> {
                         ),
                         obscureText: _obscureConfirm,
                         validator: (v) {
-                          if (v == null || v.isEmpty)
+                          if (v == null || v.isEmpty) {
                             return 'Please confirm your password';
-                          if (v != _passwordCtrl.text)
+                          }
+                          if (v != _passwordCtrl.text) {
                             return 'Passwords do not match';
+                          }
                           return null;
                         },
                       ), const SizedBox(height: 16),

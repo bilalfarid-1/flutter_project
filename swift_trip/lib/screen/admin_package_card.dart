@@ -55,11 +55,11 @@ class AdminPackageCard extends StatelessWidget {
                   color: Colors.grey[600],
                 ),
                 const SizedBox(width: 6),
-                Text('\$' + priceStr),
+                Text('\$$priceStr'),
                 const SizedBox(width: 24),
                 Icon(Icons.people_outline, size: 18, color: Colors.grey[600]),
                 const SizedBox(width: 6),
-                Text('Seats: ${seatsLeft}/${totalSeats}'),
+                Text('Seats: $seatsLeft/$totalSeats'),
               ],
             ),
 

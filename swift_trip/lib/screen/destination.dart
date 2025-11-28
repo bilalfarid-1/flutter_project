@@ -232,7 +232,7 @@ class _destinationState extends State<destination> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => PackageScreen()),
+                          MaterialPageRoute(builder: (context) => PackageScreen(fromLocation: fromCity, toLocation: toCity)),
                         );
                       },
                       style: ElevatedButton.styleFrom(

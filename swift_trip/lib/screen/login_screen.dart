@@ -82,8 +82,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         keyboardType: TextInputType.emailAddress,
                         validator: (v) {
-                          if (v == null || v.trim().isEmpty)
+                          if (v == null || v.trim().isEmpty) {
                             return 'Please enter your email';
+                          }
                           if (!v.contains('@')) return 'Enter a valid email';
                           return null;
                         },
@@ -108,10 +109,12 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         obscureText: _obscurePassword,
                         validator: (v) {
-                          if (v == null || v.isEmpty)
+                          if (v == null || v.isEmpty) {
                             return 'Please enter your password';
-                          if (v.length < 6)
+                          }
+                          if (v.length < 6) {
                             return 'Password must be at least 6 characters';
+                          }
                           return null;
                         },
                       ),
@@ -123,8 +126,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           onPressed: (_isFormValid && !_isLoading)
                               ? () async {
                                   if (!(_formKey.currentState?.validate() ??
-                                      false))
+                                      false)) {
                                     return;
+                                  }
                                   setState(() => _isLoading = true);
                                   final email = _emailCtrl.text.trim();
                                   final password = _passwordCtrl.text;
@@ -196,8 +200,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                       ),
                                     );
                                   } finally {
-                                    if (mounted)
+                                    if (mounted) {
                                       setState(() => _isLoading = false);
+                                    }
                                   }
                                 }
                               : null,

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:swift_trip/screen/login_screen.dart';
 
 class Appbar extends StatelessWidget {
   final int selectedIndex; 
