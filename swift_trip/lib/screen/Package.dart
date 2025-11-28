@@ -2,11 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:swift_trip/screen/AppBar.dart';
 import 'package:swift_trip/screen/buttons.dart';
 import 'package:swift_trip/screen/payment_screen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class PackageScreen extends StatefulWidget {
   final String fromLocation;
   final String toLocation;
-  const PackageScreen({super.key, required this.fromLocation, required this.toLocation});
+  const PackageScreen({
+    super.key,
+    required this.fromLocation,
+    required this.toLocation,
+  });
   @override
   _PackageScreen createState() => _PackageScreen();
 }
@@ -14,6 +19,19 @@ class PackageScreen extends StatefulWidget {
 class _PackageScreen extends State<PackageScreen> {
   int selectedIndex = 1;
   int selectedAgency = 0;
+
+  Future<List<Map<String, dynamic>>> fetchPackages() async {
+    try {
+      final snapshot = await FirebaseFirestore.instance
+          .collection('packages')
+          .get();
+
+      return snapshot.docs.map((doc) => doc.data()).toList();
+    } catch (e) {
+      print("Error: $e");
+      return [];
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
