@@ -19,17 +19,37 @@ class PackageScreen extends StatefulWidget {
 class _PackageScreen extends State<PackageScreen> {
   int selectedIndex = 1;
   int selectedAgency = 0;
+  List<Map<String, dynamic>> packages = [];
+  bool _isLoading = false;
 
-  Future<List<Map<String, dynamic>>> fetchPackages() async {
+  @override
+  void initState() {
+    super.initState();
+    fetchPackages();
+  }
+
+  Future<void> fetchPackages() async {
     try {
       final snapshot = await FirebaseFirestore.instance
           .collection('packages')
+          .where('fromCity', isEqualTo: widget.fromLocation)
+          .where('toCity', isEqualTo: widget.toLocation)
           .get();
 
-      return snapshot.docs.map((doc) => doc.data()).toList();
+      setState(() {
+        packages = snapshot.docs.map((doc) => doc.data()).toList();
+      });
+      setState(() {
+        _isLoading = true;
+      });
     } catch (e) {
-      print("Error: $e");
-      return [];
+      print("Error fetching packages: $e");
+      setState(() {
+        packages = [];
+      });
+      setState(() {
+        _isLoading = true;
+      });
     }
   }
 
@@ -51,7 +71,11 @@ class _PackageScreen extends State<PackageScreen> {
                 Padding(
                   padding: EdgeInsets.only(top: 20, bottom: 15),
                   child: Text(
-                    "Select a package from the options below:",
+                    _isLoading
+                        ? packages.isEmpty
+                            ? "No packages found for the selected route."
+                            : "Select a package from the options below: ${packages[0]["title"]}, ${packages.length} packages available."
+                        : "Loading packages...",
                     style: TextStyle(fontSize: 15),
                   ),
                 ),
