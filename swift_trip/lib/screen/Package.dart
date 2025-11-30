@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:swift_trip/screen/AppBar.dart';
-import 'package:swift_trip/screen/buttons.dart';
+import 'package:swift_trip/widgets/buttons.dart';
 import 'package:swift_trip/screen/payment_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -73,7 +73,9 @@ class _PackageScreen extends State<PackageScreen> {
                   child: Text(
                     _isLoading
                             ? "Loading packages..."
-                            : "Select a package from the options below: ${packages[0]["title"]}, ${packages.length} packages available.",
+                            : packages.isNotEmpty
+                                ? "Select a package from the options below: ${packages[0]["description"]}, packages available."
+                            : "No packages found for the selected route.",
                     style: TextStyle(fontSize: 15),
                   ),
                 ),

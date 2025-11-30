@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:swift_trip/screen/admin_home_screen.dart';
 
 class Appbar extends StatelessWidget {
   final int selectedIndex; 
@@ -65,7 +66,14 @@ class Appbar extends StatelessWidget {
   Widget buttonBuild(BuildContext context, int index, String title) {
     bool match = selectedIndex == index;
     return TextButton(
-      onPressed: (null) ,
+      onPressed: (){
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => AdminHomeScreen(),
+          ),
+        );
+      } ,
       child: Text(
         title,
         style: TextStyle(
