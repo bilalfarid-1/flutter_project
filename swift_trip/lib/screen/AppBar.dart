@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:swift_trip/screen/admin_home_screen.dart';
+import 'package:swift_trip/screen/login_screen.dart';
 
 class Appbar extends StatelessWidget {
-  final int selectedIndex; 
+  final int selectedIndex;
   const Appbar({super.key, required this.selectedIndex});
 
   @override
   Widget build(BuildContext context) {
-    final double progress = (selectedIndex + 1) / 3; 
+    final double progress = (selectedIndex + 1) / 3;
 
     return Container(
       height: 120,
@@ -18,9 +18,7 @@ class Appbar extends StatelessWidget {
         children: [
           Row(
             children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 25),
-              ),
+              Padding(padding: const EdgeInsets.only(left: 25)),
               const Expanded(
                 child: Padding(
                   padding: EdgeInsets.only(right: 25),
@@ -31,6 +29,15 @@ class Appbar extends StatelessWidget {
                     ),
                   ),
                 ),
+              ),
+              IconButton(
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => LoginScreen()),
+                  );
+                },
+                icon: Icon(Icons.logout_rounded),
               ),
             ],
           ),
@@ -51,7 +58,7 @@ class Appbar extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(4),
               child: LinearProgressIndicator(
-                value: progress,   
+                value: progress,
                 minHeight: 3,
                 backgroundColor: Colors.grey.shade300,
                 valueColor: const AlwaysStoppedAnimation(Colors.blueAccent),
@@ -65,21 +72,11 @@ class Appbar extends StatelessWidget {
 
   Widget buttonBuild(BuildContext context, int index, String title) {
     bool match = selectedIndex == index;
-    return TextButton(
-      onPressed: (){
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => AdminHomeScreen(),
-          ),
-        );
-      } ,
-      child: Text(
-        title,
-        style: TextStyle(
-          color: match ? Colors.blueAccent : Colors.black,
-          fontSize: 16,
-        ),
+    return Text(
+      title,
+      style: TextStyle(
+        color: match ? Colors.blueAccent : Colors.black,
+        fontSize: 16,
       ),
     );
   }
