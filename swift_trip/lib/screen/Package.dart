@@ -60,7 +60,10 @@ class _PackageScreen extends State<PackageScreen> {
         preferredSize: Size.fromHeight(100),
         child: Appbar(selectedIndex: selectedIndex),
       ),
-      body: SizedBox(
+      body: _isLoading
+          ? Center(child: CircularProgressIndicator())
+          :
+      SizedBox(
         height: double.infinity,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -70,11 +73,8 @@ class _PackageScreen extends State<PackageScreen> {
                 Text("Choose Your Package", style: TextStyle(fontSize: 18)),
                 Padding(
                   padding: EdgeInsets.only(top: 20, bottom: 15),
-                  child: Text(
-                    _isLoading
-                            ? "Loading packages..."
-                            : packages.isNotEmpty
-                                ? "Select a package from the options below: ${packages[0]["description"]}, packages available."
+                  child: Text(packages.isNotEmpty
+                                ? "Select a package from the options below:"
                             : "No packages found for the selected route.",
                     style: TextStyle(fontSize: 15),
                   ),
