@@ -18,7 +18,7 @@ class PackageScreen extends StatefulWidget {
 
 class _PackageScreen extends State<PackageScreen> {
   int selectedIndex = 1;
-  int selectedAgency = 0;
+  List<int> selectedPackage = [];
   List<Map<String, dynamic>> packages = [];
   bool _isLoading = true;
 
@@ -62,29 +62,92 @@ class _PackageScreen extends State<PackageScreen> {
       ),
       body: _isLoading
           ? Center(child: CircularProgressIndicator())
-          :
-      SizedBox(
-        height: double.infinity,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Text("Choose Your Package", style: TextStyle(fontSize: 18)),
-                Padding(
-                  padding: EdgeInsets.only(top: 20, bottom: 15),
-                  child: Text(packages.isNotEmpty
-                                ? "Select a package from the options below:"
-                            : "No packages found for the selected route.",
-                    style: TextStyle(fontSize: 15),
+          : SizedBox(
+              height: double.infinity,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Text(
+                        "Choose Your Package",
+                        style: TextStyle(fontSize: 18),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(top: 20, bottom: 15),
+                        child: Text(
+                          packages.isNotEmpty
+                              ? "Select a package from the options below:"
+                              : "No packages found for the selected route.",
+                          style: TextStyle(fontSize: 15),
+                        ),
+                      ),
+                      buildPackageCard(),
+                      Buttons(nextScreen: PaymentScreen()),
+                    ],
                   ),
                 ),
-                Buttons(nextScreen: PaymentScreen()),
-              ],
+              ),
+            ),
+    );
+  }
+
+  Widget buildPackageCard() {
+    return ListView.builder(
+      shrinkWrap: true,
+      physics: NeverScrollableScrollPhysics(),
+      itemCount: packages.length,
+      itemBuilder: (context, index) {
+        final package = packages[index];
+        return InkWell(
+          onTap: () {
+            setState(() {
+              if (selectedPackage.contains(index)) {
+                selectedPackage.remove(index);
+              } else {
+                selectedPackage = [index];
+              }
+            });
+          },
+          child: Card(
+            color: selectedPackage.isNotEmpty && selectedPackage.contains(index)
+                ? Colors.blue.shade100
+                : Colors.white,
+            elevation: selectedPackage.contains(index) ? 6 : 1,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+              side: BorderSide(
+                color: selectedPackage.contains(index)
+                    ? Colors.blue
+                    : Colors.grey.shade300,
+                width: 2,
+              ),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(15),
+              child: Row(
+                children: [
+                  Image.network(
+                    package['imageUrl'],
+                    height: 100,
+                    width: 100,
+                    fit: BoxFit.fitHeight,
+                  ),
+                  SizedBox(width: 10),
+                  Column(
+                    children: [
+                      Text(
+                        "${package['title']}",
+                        style: TextStyle(fontSize: 16),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }
