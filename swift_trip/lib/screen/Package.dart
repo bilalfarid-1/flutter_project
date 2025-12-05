@@ -18,7 +18,7 @@ class PackageScreen extends StatefulWidget {
 
 class _PackageScreen extends State<PackageScreen> {
   int selectedIndex = 1;
-  List<int> selectedPackage = [];
+  int selectedPackage = -1;
   List<Map<String, dynamic>> packages = [];
   bool _isLoading = true;
 
@@ -102,22 +102,22 @@ class _PackageScreen extends State<PackageScreen> {
         return InkWell(
           onTap: () {
             setState(() {
-              if (selectedPackage.contains(index)) {
-                selectedPackage.remove(index);
+              if (selectedPackage == index) {
+                selectedPackage = -1;
               } else {
-                selectedPackage = [index];
+                selectedPackage = index;
               }
             });
           },
           child: Card(
-            color: selectedPackage.isNotEmpty && selectedPackage.contains(index)
+            color: selectedPackage == index
                 ? Colors.blue.shade100
                 : Colors.white,
-            elevation: selectedPackage.contains(index) ? 6 : 1,
+            elevation: selectedPackage == index ? 6 : 1,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
               side: BorderSide(
-                color: selectedPackage.contains(index)
+                color: selectedPackage == index
                     ? Colors.blue
                     : Colors.grey.shade300,
                 width: 2,
