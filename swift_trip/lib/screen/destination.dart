@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:swift_trip/screen/Appbar.dart';
 import 'package:swift_trip/screen/Package.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class destination extends StatefulWidget {
   const destination({super.key});
@@ -13,9 +14,34 @@ class _destinationState extends State<destination> {
   String toCity = "";
   int selectedIndex = 0;
 
+  List<String> cities = [];
+
+  Future<void> fetchCities() async {
+    try {
+      final snapshot = await FirebaseFirestore.instance
+          .collection('packages')
+          .get();
+
+      final packages = snapshot.docs.map((doc) => doc.data()).toList();
+
+      cities = packages.map((p) => p['fromCity'].toString()).toList()
+        ..addAll(packages.map((p) => p['toCity'].toString()));
+
+      cities = cities.toSet().toList();
+      setState(() {});
+    } catch (e) {
+      print("Error fetching cities: $e");
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    fetchCities();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final List<String> cities = ["Islamabad", "Lahore", "Karachi", "Peshawar"];
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(100),
@@ -232,7 +258,12 @@ class _destinationState extends State<destination> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => PackageScreen(fromLocation: fromCity, toLocation: toCity)),
+                          MaterialPageRoute(
+                            builder: (context) => PackageScreen(
+                              fromLocation: fromCity,
+                              toLocation: toCity,
+                            ),
+                          ),
                         );
                       },
                       style: ElevatedButton.styleFrom(
