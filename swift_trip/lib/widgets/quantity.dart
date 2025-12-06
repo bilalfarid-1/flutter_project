@@ -3,7 +3,11 @@ import 'package:flutter/material.dart';
 class QuantityInput extends StatefulWidget {
   final int maxQty;
   final ValueChanged<int> onChanged;
-  const QuantityInput({super.key, required this.maxQty, required this.onChanged});
+  const QuantityInput({
+    super.key,
+    required this.maxQty,
+    required this.onChanged,
+  });
 
   @override
   State<QuantityInput> createState() => _QuantityInputState();
@@ -13,18 +17,22 @@ class _QuantityInputState extends State<QuantityInput> {
   final TextEditingController _controller = TextEditingController(text: '0');
   int _quantity = 0;
 
-  void updateQuantity() {
-    final parsed = int.tryParse(_controller.text);
-    int value = parsed ?? 0;
+  void setQuantity(int value) {
     if (value < 0) value = 0;
     if (value > widget.maxQty) value = widget.maxQty;
+
     _quantity = value;
     _controller.text = _quantity.toString();
     _controller.selection = TextSelection.fromPosition(
       TextPosition(offset: _controller.text.length),
     );
-      widget.onChanged(_quantity); // send new quantity to parent
-    
+
+    widget.onChanged(_quantity);
+  }
+
+  void getText() {
+    final parsed = int.tryParse(_controller.text) ?? 0;
+    setQuantity(parsed);
   }
 
   @override
@@ -40,6 +48,7 @@ class _QuantityInputState extends State<QuantityInput> {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
+          // minus button
           SizedBox(
             width: 28,
             height: 28,
@@ -49,9 +58,7 @@ class _QuantityInputState extends State<QuantityInput> {
               icon: const Icon(Icons.remove),
               onPressed: () {
                 setState(() {
-                  updateQuantity();
-                  if (_quantity > 0) _quantity--;
-                  _controller.text = _quantity.toString();
+                  setQuantity(_quantity - 1);
                 });
               },
             ),
@@ -73,7 +80,9 @@ class _QuantityInputState extends State<QuantityInput> {
                   borderSide: BorderSide(width: 2, color: Colors.blueAccent),
                 ),
               ),
-              onChanged: (_) => setState(updateQuantity),
+              onChanged: (_) {
+                setState(getText);
+              },
             ),
           ),
           SizedBox(
@@ -85,9 +94,7 @@ class _QuantityInputState extends State<QuantityInput> {
               icon: const Icon(Icons.add),
               onPressed: () {
                 setState(() {
-                  updateQuantity();
-                  _quantity++;
-                  _controller.text = _quantity.toString();
+                  setQuantity(_quantity + 1);
                 });
               },
             ),

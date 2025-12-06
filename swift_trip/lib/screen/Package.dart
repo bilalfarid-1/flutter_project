@@ -167,7 +167,9 @@ class _PackageScreen extends State<PackageScreen> {
                         "Price: ${package['price']}",
                         style: TextStyle(fontSize: 14),
                       ),
-                      Text("Total Price: $totalPrice"),
+                      selectedPackage == index
+                          ? Text("Total Price: $totalPrice")
+                          : SizedBox.shrink(),
                       selectedPackage == index
                           ? QuantityInput(
                               maxQty: package['totalSeats'] ?? 0,
