@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:swift_trip/screen/destination.dart';
+import 'package:swift_trip/widgets/SearchDropdown.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,7 +34,7 @@ void main() async {
       title: 'Tourist App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(scaffoldBackgroundColor: Color(0xFFDFF2FE)),
-      home: destination(),
+      home: Scaffold(body: Center(child: CityDropdown(cities: ["Lahore", "Karachi", "Islamabad"], value: "", hintText: "Select City", onChanged: (value) {}))),
     ),
   );
 }
