@@ -211,6 +211,16 @@ class _destinationState extends State<destination> {
                     ),
                     child: ElevatedButton(
                       onPressed: () {
+                        if (fromCity.isEmpty || toCity.isEmpty) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                "Please select both departure and arrival cities.",
+                              ),
+                            ),
+                          );
+                          return;
+                        }
                         Navigator.push(
                           context,
                           MaterialPageRoute(

@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 
 class Buttons extends StatelessWidget {
   final Widget nextScreen;
+  final bool disabledContinueButton;
 
   const Buttons({
     super.key,
     required this.nextScreen,
+    required this.disabledContinueButton,
   });
 
   @override
@@ -43,7 +45,7 @@ class Buttons extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
               ),
             ),
-            onPressed: () {
+            onPressed: disabledContinueButton ? (null) : () {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => nextScreen),

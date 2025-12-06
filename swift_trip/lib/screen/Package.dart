@@ -83,7 +83,7 @@ class _PackageScreen extends State<PackageScreen> {
                         ),
                       ),
                       buildPackageCard(),
-                      Buttons(nextScreen: PaymentScreen()),
+                      Buttons(nextScreen: PaymentScreen(), disabledContinueButton: selectedPackage == -1),
                     ],
                   ),
                 ),

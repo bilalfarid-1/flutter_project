@@ -166,7 +166,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                 ),
               ),
             ),
-            Buttons(nextScreen: PaymentScreen())
+            Buttons(nextScreen: PaymentScreen(), disabledContinueButton: true),
           ],
         ),
       ),
