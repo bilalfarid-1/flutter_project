@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:swift_trip/screen/Appbar.dart';
 import 'package:swift_trip/screen/Package.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:swift_trip/widgets/SearchDropdown.dart';
 
 class destination extends StatefulWidget {
   const destination({super.key});
@@ -94,36 +95,13 @@ class _destinationState extends State<destination> {
                                 ],
                               ),
                             ),
-                            Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 21),
-                              child: DropdownButtonFormField(
-                                decoration: InputDecoration(
-                                  filled: true,
-                                  fillColor: Color(0xffF9FAFB),
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(20),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(20),
-                                    borderSide: BorderSide(
-                                      color: Colors.blueAccent,
-                                      width: 2,
-                                    ),
-                                  ),
-                                  hintText: "Departure City",
-                                ),
-                                items: cities.map((value) {
-                                  return DropdownMenuItem(
-                                    value: value,
-                                    child: Text(value),
-                                  );
-                                }).toList(),
-                                onChanged: (value) {
-                                  setState(() {
-                                    fromCity = value.toString();
-                                  });
-                                },
-                              ),
+                            CityDropdown(
+                              cities: cities,
+                              value: fromCity,
+                              hintText: "Departure City",
+                              onChanged: (value) {
+                                setState(() => fromCity = value ?? "");
+                              },
                             ),
                             Padding(
                               padding: const EdgeInsets.symmetric(
@@ -142,36 +120,13 @@ class _destinationState extends State<destination> {
                                 ],
                               ),
                             ),
-                            Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 20),
-                              child: DropdownButtonFormField(
-                                decoration: InputDecoration(
-                                  filled: true,
-                                  fillColor: Color(0xffF9FAFB),
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(20),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(20),
-                                    borderSide: BorderSide(
-                                      color: Colors.blueAccent,
-                                      width: 2,
-                                    ),
-                                  ),
-                                  hintText: "Arrival City",
-                                ),
-                                items: cities.map((value) {
-                                  return DropdownMenuItem(
-                                    value: value,
-                                    child: Text(value),
-                                  );
-                                }).toList(),
-                                onChanged: (value) {
-                                  setState(() {
-                                    toCity = value.toString();
-                                  });
-                                },
-                              ),
+                            CityDropdown(
+                              cities: cities,
+                              value: toCity,
+                              hintText: "Arrival City",
+                              onChanged: (value) {
+                                setState(() => toCity = value ?? "");
+                              },
                             ),
                             Padding(
                               padding: const EdgeInsets.all(20),
