@@ -3,6 +3,7 @@ import 'package:swift_trip/screen/AppBar.dart';
 import 'package:swift_trip/widgets/buttons.dart';
 import 'package:swift_trip/screen/payment_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:swift_trip/widgets/quantity.dart';
 
 class PackageScreen extends StatefulWidget {
   final String fromLocation;
@@ -21,6 +22,8 @@ class _PackageScreen extends State<PackageScreen> {
   int selectedPackage = -1;
   List<Map<String, dynamic>> packages = [];
   bool _isLoading = true;
+  int quantity = 0;
+  int totalPrice = 0;
 
   @override
   void initState() {
@@ -83,7 +86,10 @@ class _PackageScreen extends State<PackageScreen> {
                         ),
                       ),
                       buildPackageCard(),
-                      Buttons(nextScreen: PaymentScreen(), disabledContinueButton: selectedPackage == -1),
+                      Buttons(
+                        nextScreen: PaymentScreen(),
+                        disabledContinueButton: selectedPackage == -1,
+                      ),
                     ],
                   ),
                 ),
@@ -104,6 +110,8 @@ class _PackageScreen extends State<PackageScreen> {
             setState(() {
               if (selectedPackage == index) {
                 selectedPackage = -1;
+                quantity = 0;
+                totalPrice = 0;
               } else {
                 selectedPackage = index;
               }
@@ -135,11 +143,46 @@ class _PackageScreen extends State<PackageScreen> {
                   ),
                   SizedBox(width: 10),
                   Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         "${package['title']}",
                         style: TextStyle(fontSize: 16),
                       ),
+                      SizedBox(
+                        width: 250,
+                        child: Text(
+                          "Description: ${package['description']}",
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          softWrap: true,
+                          style: TextStyle(fontSize: 12),
+                        ),
+                      ),
+                      Text(
+                        "Total Seats: ${package['totalSeats']}",
+                        style: TextStyle(fontSize: 14),
+                      ),
+                      Text(
+                        "Price: ${package['price']}",
+                        style: TextStyle(fontSize: 14),
+                      ),
+                      Text("Total Price: $totalPrice"),
+                      selectedPackage == index
+                          ? QuantityInput(
+                              maxQty: package['totalSeats'] ?? 0,
+                              onChanged: (value) {
+                                setState(() {
+                                  quantity = value;
+                                  final seatPrice = (package['price'] ?? 0);
+                                  final priceAsDouble = seatPrice is int
+                                      ? seatPrice.toDouble()
+                                      : seatPrice as double;
+                                  totalPrice = (value * priceAsDouble).toInt();
+                                });
+                              },
+                            )
+                          : SizedBox.shrink(),
                     ],
                   ),
                 ],
