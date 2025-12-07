@@ -21,8 +21,10 @@ class _PackageScreen extends State<PackageScreen> {
   int selectedIndex = 1;
   int selectedPackage = -1;
   List<Map<String, dynamic>> packages = [];
+  List<Map<String, dynamic>> selectedPackages = [];
+
   bool _isLoading = true;
-  int quantity = 0;
+  int groupSize = 0;
   int totalPrice = 0;
 
   @override
@@ -87,7 +89,7 @@ class _PackageScreen extends State<PackageScreen> {
                       ),
                       buildPackageCard(),
                       Buttons(
-                        nextScreen: PaymentScreen(),
+                        nextScreen: PaymentScreen(selectedPackages: selectedPackages, groupSize: groupSize, totalPrice: totalPrice),
                         disabledContinueButton: selectedPackage == -1,
                       ),
                     ],
@@ -110,10 +112,16 @@ class _PackageScreen extends State<PackageScreen> {
             setState(() {
               if (selectedPackage == index) {
                 selectedPackage = -1;
-                quantity = 0;
+                groupSize = 0;
                 totalPrice = 0;
+                selectedPackages.clear();
               } else {
                 selectedPackage = index;
+                selectedPackages = [
+                  {
+                    'package': package,
+                  }
+                ];
               }
             });
           },
@@ -175,7 +183,7 @@ class _PackageScreen extends State<PackageScreen> {
                               maxQty: package['totalSeats'] ?? 0,
                               onChanged: (value) {
                                 setState(() {
-                                  quantity = value;
+                                  groupSize = value;
                                   final seatPrice = (package['price'] ?? 0);
                                   final priceAsDouble = seatPrice is int
                                       ? seatPrice.toDouble()
