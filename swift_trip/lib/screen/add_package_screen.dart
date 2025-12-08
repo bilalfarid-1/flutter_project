@@ -35,7 +35,7 @@ class _AddPackageScreenState extends State<AddPackageScreen> {
         'startDate': Timestamp.fromDate(formData['startDate'] as DateTime),
         'endDate': Timestamp.fromDate(formData['endDate'] as DateTime),
       };
-
+ 
       await FirebaseFirestore.instance.collection('packages').add(data);
 
       if (mounted) {

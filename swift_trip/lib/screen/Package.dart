@@ -19,9 +19,9 @@ class PackageScreen extends StatefulWidget {
 
 class _PackageScreen extends State<PackageScreen> {
   int selectedIndex = 1;
-  int selectedPackage = -1;
+  int selectedPackageIndex = -1;
   List<Map<String, dynamic>> packages = [];
-  List<Map<String, dynamic>> selectedPackages = [];
+  Map<String, dynamic>? selectedPackage;
 
   bool _isLoading = true;
   int groupSize = 0;
@@ -89,8 +89,8 @@ class _PackageScreen extends State<PackageScreen> {
                       ),
                       buildPackageCard(),
                       Buttons(
-                        nextScreen: PaymentScreen(selectedPackages: selectedPackages, groupSize: groupSize, totalPrice: totalPrice),
-                        disabledContinueButton: selectedPackage == -1,
+                        nextScreen: PaymentScreen(selectedPackage: selectedPackage, groupSize: groupSize, totalPrice: totalPrice),
+                        disabledContinueButton: selectedPackageIndex == -1 || groupSize == 0,
                       ),
                     ],
                   ),
@@ -110,30 +110,26 @@ class _PackageScreen extends State<PackageScreen> {
         return InkWell(
           onTap: () {
             setState(() {
-              if (selectedPackage == index) {
-                selectedPackage = -1;
+              if (selectedPackageIndex == index) {
+                selectedPackageIndex = -1;
                 groupSize = 0;
                 totalPrice = 0;
-                selectedPackages.clear();
+                selectedPackage = null;
               } else {
-                selectedPackage = index;
-                selectedPackages = [
-                  {
-                    'package': package,
-                  }
-                ];
+                selectedPackageIndex = index;
+                selectedPackage = package;
               }
             });
           },
           child: Card(
-            color: selectedPackage == index
+            color: selectedPackageIndex == index
                 ? Colors.blue.shade100
                 : Colors.white,
-            elevation: selectedPackage == index ? 6 : 1,
+            elevation: selectedPackageIndex == index ? 6 : 1,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
               side: BorderSide(
-                color: selectedPackage == index
+                color: selectedPackageIndex == index
                     ? Colors.blue
                     : Colors.grey.shade300,
                 width: 2,
@@ -178,7 +174,7 @@ class _PackageScreen extends State<PackageScreen> {
                       selectedPackage == index
                           ? Text("Total Price: $totalPrice")
                           : SizedBox.shrink(),
-                      selectedPackage == index
+                      selectedPackageIndex == index
                           ? QuantityInput(
                               maxQty: package['totalSeats'] ?? 0,
                               onChanged: (value) {

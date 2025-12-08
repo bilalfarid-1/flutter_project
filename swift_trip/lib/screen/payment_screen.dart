@@ -5,12 +5,12 @@ import 'package:swift_trip/widgets/buttons.dart';
 import 'package:swift_trip/services/booking_service.dart';
 
 class PaymentScreen extends StatefulWidget {
-  final List<Map<String, dynamic>>? selectedPackages;
+  final Map<String, dynamic>? selectedPackage;
   final int groupSize;
   final int totalPrice;
   const PaymentScreen({
     super.key,
-    this.selectedPackages,
+    this.selectedPackage,
     required this.groupSize,
     required this.totalPrice,
   });
@@ -49,7 +49,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                   margin: EdgeInsets.symmetric(vertical: 6),
                   child: ListTile(
                     title: Text(
-                      widget.selectedPackages![0]['package']['title']
+                      widget.selectedPackage?['title']?? "No Package Selected"
                           .toString(),
                     ),
                     subtitle: Text("Quantity: ${widget.groupSize}"),
@@ -123,10 +123,9 @@ class _PaymentScreenState extends State<PaymentScreen> {
                 Buttons(
                   nextScreen: destination(),
                   disabledContinueButton:
-                      widget.selectedPackages == null ||
-                      widget.selectedPackages!.isEmpty,
+                      widget.selectedPackage == null,
                       confirmPayment: () async {
-                    final pkg = widget.selectedPackages![0]['package']
+                    final pkg = widget.selectedPackage
                         as Map<String, dynamic>;
 
                     // You must ensure you have the package doc ID available:
