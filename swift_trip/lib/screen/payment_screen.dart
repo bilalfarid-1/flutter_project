@@ -3,6 +3,7 @@ import 'package:swift_trip/screen/AppBar.dart';
 import 'package:swift_trip/screen/destination.dart';
 import 'package:swift_trip/widgets/buttons.dart';
 import 'package:swift_trip/services/booking_service.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class PaymentScreen extends StatefulWidget {
   final Map<String, dynamic>? selectedPackage;
@@ -129,7 +130,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
 
                     final String packageId = pkg['id'];
                     final String userId =
-                        'CURRENT_USER_ID';
+                        FirebaseAuth.instance.currentUser!.uid;
                     final int seats = widget.groupSize;
                     final double pricePerPerson =
                         (pkg['price'] as num).toDouble();
