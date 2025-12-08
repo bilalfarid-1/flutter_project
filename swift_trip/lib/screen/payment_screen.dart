@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:swift_trip/screen/AppBar.dart';
 import 'package:swift_trip/screen/destination.dart';
 import 'package:swift_trip/widgets/buttons.dart';
+import 'package:swift_trip/services/booking_service.dart';
 
 class PaymentScreen extends StatefulWidget {
   final List<Map<String, dynamic>>? selectedPackages;
@@ -124,6 +125,43 @@ class _PaymentScreenState extends State<PaymentScreen> {
                   disabledContinueButton:
                       widget.selectedPackages == null ||
                       widget.selectedPackages!.isEmpty,
+                      confirmPayment: () async {
+                    final pkg = widget.selectedPackages![0]['package']
+                        as Map<String, dynamic>;
+
+                    // You must ensure you have the package doc ID available:
+                    final String packageId = pkg['id']; // e.g. from Firestore doc.id
+                    final String userId =
+                        'CURRENT_USER_ID'; // get from FirebaseAuth.currentUser!.uid
+                    final int seats = widget.groupSize;
+                    final double pricePerPerson =
+                        (pkg['price'] as num).toDouble();
+
+                    try {
+                      await BookingService().bookPackage(
+                        packageId,
+                        userId,
+                        seats,
+                        pricePerPerson,
+                      );
+
+                      if (!mounted) return;
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Booking saved successfully'),
+                        ),
+                      );
+                    } catch (e) {
+                      if (!mounted) return;
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text('Booking failed: $e'),
+                        ),
+                      );
+                      // Re-throw if you want to stop navigation
+                      throw e;
+                    }
+                  },
                 ),
               ],
             ),

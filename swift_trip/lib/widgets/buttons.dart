@@ -3,16 +3,17 @@ import 'package:flutter/material.dart';
 class Buttons extends StatelessWidget {
   final Widget nextScreen;
   final bool disabledContinueButton;
+  final Future<void> Function()? confirmPayment;
 
   const Buttons({
     super.key,
     required this.nextScreen,
     required this.disabledContinueButton,
+    this.confirmPayment,
   });
 
   @override
   Widget build(BuildContext context) {
-
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Row(
@@ -45,12 +46,17 @@ class Buttons extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
               ),
             ),
-            onPressed: disabledContinueButton ? (null) : () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => nextScreen),
-              );
-            },
+            onPressed: disabledContinueButton
+                ? (null)
+                : () async {
+                    if (confirmPayment != null) {
+                      await confirmPayment!();
+                    }
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => nextScreen),
+                    );
+                  },
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
               child: Row(
