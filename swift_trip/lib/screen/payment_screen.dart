@@ -119,7 +119,6 @@ class _PaymentScreenState extends State<PaymentScreen> {
                   ),
                 ),
 
-                // Continue Button
                 Buttons(
                   nextScreen: destination(),
                   disabledContinueButton:
@@ -128,10 +127,9 @@ class _PaymentScreenState extends State<PaymentScreen> {
                     final pkg = widget.selectedPackage
                         as Map<String, dynamic>;
 
-                    // You must ensure you have the package doc ID available:
-                    final String packageId = pkg['id']; // e.g. from Firestore doc.id
+                    final String packageId = pkg['id'];
                     final String userId =
-                        'CURRENT_USER_ID'; // get from FirebaseAuth.currentUser!.uid
+                        'CURRENT_USER_ID';
                     final int seats = widget.groupSize;
                     final double pricePerPerson =
                         (pkg['price'] as num).toDouble();
@@ -157,8 +155,6 @@ class _PaymentScreenState extends State<PaymentScreen> {
                           content: Text('Booking failed: $e'),
                         ),
                       );
-                      // Re-throw if you want to stop navigation
-                      throw e;
                     }
                   },
                 ),
