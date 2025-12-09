@@ -4,6 +4,8 @@ import 'package:swift_trip/screen/login_screen.dart';
 import 'package:swift_trip/screen/add_package_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:swift_trip/screen/admin_package_card.dart';
+import 'package:swift_trip/screens/package_bookings_screen.dart';
+import 'package:swift_trip/screens/admin_profile_screen.dart';
 
 class AdminHomeScreen extends StatefulWidget {
   const AdminHomeScreen({super.key});
@@ -153,30 +155,33 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
     );
   }
 
+  List<Widget> get _pages => [
+    _buildPackageList(),
+    const PackageBookingsScreen(),
+    const AdminProfileScreen(),
+  ];
+
+  List<String> get _titles => ['Packages', 'Package Bookings', 'Profile'];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const AddPackageScreen()),
-          );
-        },
-        tooltip: 'Add Package',
-        child: const Icon(Icons.add),
-      ),
-      appBar: AppBar(
-        title: const Text('Admin Dashboard'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.logout),
-            onPressed: _signOutAndGotoLogin,
-            tooltip: 'Sign out',
-          ),
-        ],
-      ),
-      body: _buildPackageList(),
+      floatingActionButton: _selectedIndex == 0
+          ? FloatingActionButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const AddPackageScreen(),
+                  ),
+                );
+              },
+              tooltip: 'Add Package',
+              child: const Icon(Icons.add),
+            )
+          : null,
+      appBar: AppBar(title: Text(_titles[_selectedIndex])),
+      body: _pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
@@ -185,6 +190,11 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
             icon: Icon(Icons.inventory_2_outlined),
             activeIcon: Icon(Icons.inventory_2),
             label: 'Packages',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.list_alt_outlined),
+            activeIcon: Icon(Icons.list_alt),
+            label: 'Bookings',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person_outline),
