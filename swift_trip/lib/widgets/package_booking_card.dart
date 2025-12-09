@@ -15,6 +15,12 @@ class PackageBookingCard extends StatelessWidget {
     final status = (data['status'] ?? '').toString().toLowerCase();
     final totalPrice = data['totalPrice'] ?? 0;
     final seats = data['seats'] ?? 1;
+    final fromCity = (data['fromCity'] ?? '').toString();
+    final toCity = (data['toCity'] ?? '').toString();
+    final route = (fromCity.isNotEmpty && toCity.isNotEmpty)
+        ? '$fromCity to $toCity'
+        : 'Unknown Route';
+    final userName = (data['userName'] ?? '').toString();
 
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
@@ -38,11 +44,13 @@ class PackageBookingCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  'Booking #${bookingId.length >= 4 ? bookingId.substring(0, 4) : bookingId}',
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
+                Expanded(
+                  child: Text(
+                    route,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
                   ),
                 ),
                 // Status badge
@@ -71,7 +79,7 @@ class PackageBookingCard extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             Text(
-              'User: ${data['userId'] ?? 'Unknown'}',
+              'User: ${userName.isNotEmpty ? userName : 'Unknown User'}',
               style: TextStyle(color: Colors.grey[800]),
             ),
             const SizedBox(height: 12),
@@ -87,6 +95,14 @@ class PackageBookingCard extends StatelessWidget {
                 const Icon(Icons.people, size: 18, color: Colors.black54),
                 const SizedBox(width: 6),
                 Text('$seats Seats'),
+                const SizedBox(width: 24),
+                const Icon(
+                  Icons.credit_card_outlined,
+                  size: 18,
+                  color: Colors.black54,
+                ),
+                const SizedBox(width: 6),
+                Text(data['paymentMethod'] ?? 'Cash'),
               ],
             ),
           ],
