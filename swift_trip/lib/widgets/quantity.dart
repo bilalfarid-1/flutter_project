@@ -3,11 +3,7 @@ import 'package:flutter/material.dart';
 class QuantityInput extends StatefulWidget {
   final int maxQty;
   final ValueChanged<int> onChanged;
-  const QuantityInput({
-    super.key,
-    required this.maxQty,
-    required this.onChanged,
-  });
+  QuantityInput({super.key, required this.maxQty, required this.onChanged});
 
   @override
   State<QuantityInput> createState() => _QuantityInputState();
@@ -50,17 +46,19 @@ class _QuantityInputState extends State<QuantityInput> {
         children: [
           // minus button
           SizedBox(
-            width: 28,
-            height: 28,
+            width: 32,
+            height: 32,
             child: IconButton(
               padding: EdgeInsets.zero,
               iconSize: 18,
               icon: const Icon(Icons.remove),
-              onPressed: () {
-                setState(() {
-                  setQuantity(_quantity - 1);
-                });
-              },
+              onPressed: _quantity > 0
+                  ? () {
+                      setState(() {
+                        setQuantity(_quantity - 1);
+                      });
+                    }
+                  : null,
             ),
           ),
           SizedBox(
@@ -86,18 +84,26 @@ class _QuantityInputState extends State<QuantityInput> {
             ),
           ),
           SizedBox(
-            width: 28,
-            height: 28,
+            width: 32,
+            height: 32,
             child: IconButton(
               padding: EdgeInsets.zero,
               iconSize: 18,
               icon: const Icon(Icons.add),
-              onPressed: () {
-                setState(() {
-                  setQuantity(_quantity + 1);
-                });
-              },
+              onPressed: _quantity < widget.maxQty
+                  ? () {
+                      setState(() {
+                        setQuantity(_quantity + 1);
+                      });
+                    }
+                  : null,
             ),
+          ),
+          const SizedBox(width: 8),
+          // label to clarify what the counter is for
+          Text(
+            _quantity == 1 ? 'person' : 'persons',
+            style: TextStyle(color: Colors.grey[700]),
           ),
         ],
       ),
