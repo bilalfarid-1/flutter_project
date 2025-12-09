@@ -164,27 +164,31 @@ class _LoginScreenState extends State<LoginScreen> {
                                       }
 
                                       if (role == 'organizer') {
-                                        Navigator.pushReplacement(
+                                        Navigator.of(
                                           context,
+                                        ).pushAndRemoveUntil(
                                           MaterialPageRoute(
                                             builder: (context) =>
                                                 const AdminHomeScreen(),
                                           ),
+                                          (route) => false,
                                         );
                                       } else {
-                                        Navigator.pushReplacement(
+                                        Navigator.of(
                                           context,
+                                        ).pushAndRemoveUntil(
                                           MaterialPageRoute(
                                             builder: (context) => destination(),
                                           ),
+                                          (route) => false,
                                         );
                                       }
                                     } else {
-                                      Navigator.pushReplacement(
-                                        context,
+                                      Navigator.of(context).pushAndRemoveUntil(
                                         MaterialPageRoute(
                                           builder: (context) => destination(),
                                         ),
+                                        (route) => false,
                                       );
                                     }
                                   } on FirebaseAuthException catch (e) {
