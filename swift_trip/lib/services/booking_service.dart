@@ -11,9 +11,16 @@ class BookingService {
     String userId,
     int seats,
     double pricePerPerson,
+    String fromCity,
+    String toCity,
+    String paymentMethod,
   ) async {
     final packageRef = _firestore.collection('packages').doc(packageId);
     final bookingsColl = _firestore.collection('bookings');
+
+    // Fetch user's profile to denormalize the user name into the booking
+    final userDoc = await _firestore.collection('users').doc(userId).get();
+    final userName = (userDoc.data()?['name'] ?? '').toString();
 
     await _firestore.runTransaction((transaction) async {
       final pkgSnapshot = await transaction.get(packageRef);
@@ -43,9 +50,13 @@ class BookingService {
       final bookingRef = bookingsColl.doc();
       transaction.set(bookingRef, {
         'userId': userId,
+        'userName': userName,
         'packageId': packageId,
         'seats': seats,
         'totalPrice': totalPrice,
+        'fromCity': fromCity,
+        'toCity': toCity,
+        'paymentMethod': paymentMethod,
         'bookingDate': FieldValue.serverTimestamp(),
         'status': 'confirmed',
       });
