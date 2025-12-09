@@ -9,11 +9,15 @@ class PaymentScreen extends StatefulWidget {
   final Map<String, dynamic>? selectedPackage;
   final int groupSize;
   final int totalPrice;
+  final String fromCity;
+  final String toCity;
   const PaymentScreen({
     super.key,
     this.selectedPackage,
     required this.groupSize,
     required this.totalPrice,
+    required this.fromCity,
+    required this.toCity,
   });
   @override
   State<PaymentScreen> createState() {
@@ -23,7 +27,7 @@ class PaymentScreen extends StatefulWidget {
 
 class _PaymentScreenState extends State<PaymentScreen> {
   int selectedIndex = 4;
-  String selectedPaymentMethod = "Cash";
+  String _paymentMethod = 'Cash';
 
   @override
   Widget build(context) {
@@ -50,8 +54,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
                   margin: EdgeInsets.symmetric(vertical: 6),
                   child: ListTile(
                     title: Text(
-                      widget.selectedPackage?['title']?? "No Package Selected"
-                          .toString(),
+                      widget.selectedPackage?['title'] ??
+                          "No Package Selected".toString(),
                     ),
                     subtitle: Text("Quantity: ${widget.groupSize}"),
                     trailing: Text(
@@ -83,36 +87,29 @@ class _PaymentScreenState extends State<PaymentScreen> {
 
                         SizedBox(height: 10),
 
-                        RadioListTile(
-                          title: Text("Cash"),
-                          value: "Cash",
-                          groupValue: selectedPaymentMethod,
+                        // Payment method selector
+                        DropdownButtonFormField<String>(
+                          value: _paymentMethod,
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                          ),
+                          items: const [
+                            DropdownMenuItem(
+                              value: 'Cash',
+                              child: Text('Cash'),
+                            ),
+                            DropdownMenuItem(
+                              value: 'Credit Card',
+                              child: Text('Credit Card'),
+                            ),
+                            DropdownMenuItem(
+                              value: 'EasyPaisa',
+                              child: Text('EasyPaisa'),
+                            ),
+                          ],
                           onChanged: (value) {
-                            setState(() {
-                              selectedPaymentMethod = value.toString();
-                            });
-                          },
-                        ),
-
-                        RadioListTile(
-                          title: Text("EasyPaisa"),
-                          value: "EasyPaisa",
-                          groupValue: selectedPaymentMethod,
-                          onChanged: (value) {
-                            setState(() {
-                              selectedPaymentMethod = value.toString();
-                            });
-                          },
-                        ),
-
-                        RadioListTile(
-                          title: Text("JazzCash"),
-                          value: "JazzCash",
-                          groupValue: selectedPaymentMethod,
-                          onChanged: (value) {
-                            setState(() {
-                              selectedPaymentMethod = value.toString();
-                            });
+                            if (value == null) return;
+                            setState(() => _paymentMethod = value);
                           },
                         ),
                       ],
@@ -122,18 +119,16 @@ class _PaymentScreenState extends State<PaymentScreen> {
 
                 Buttons(
                   nextScreen: destination(),
-                  disabledContinueButton:
-                      widget.selectedPackage == null,
-                      confirmPayment: () async {
-                    final pkg = widget.selectedPackage
-                        as Map<String, dynamic>;
+                  disabledContinueButton: widget.selectedPackage == null,
+                  confirmPayment: () async {
+                    final pkg = widget.selectedPackage as Map<String, dynamic>;
 
                     final String packageId = pkg['id'];
                     final String userId =
                         FirebaseAuth.instance.currentUser!.uid;
                     final int seats = widget.groupSize;
-                    final double pricePerPerson =
-                        (pkg['price'] as num).toDouble();
+                    final double pricePerPerson = (pkg['price'] as num)
+                        .toDouble();
 
                     try {
                       await BookingService().bookPackage(
@@ -141,6 +136,9 @@ class _PaymentScreenState extends State<PaymentScreen> {
                         userId,
                         seats,
                         pricePerPerson,
+                        widget.fromCity,
+                        widget.toCity,
+                        _paymentMethod,
                       );
 
                       if (!mounted) return;
@@ -152,9 +150,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                     } catch (e) {
                       if (!mounted) return;
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text('Booking failed: $e'),
-                        ),
+                        SnackBar(content: Text('Booking failed: $e')),
                       );
                     }
                   },

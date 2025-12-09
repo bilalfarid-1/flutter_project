@@ -44,10 +44,7 @@ class _PackageScreen extends State<PackageScreen> {
       setState(() {
         packages = snapshot.docs.map((doc) {
           final data = doc.data();
-          return {
-            'id': doc.id,
-            ...data, 
-          };
+          return {'id': doc.id, ...data};
         }).toList();
         _isLoading = false;
       });
@@ -100,6 +97,8 @@ class _PackageScreen extends State<PackageScreen> {
                           selectedPackage: selectedPackage,
                           groupSize: groupSize,
                           totalPrice: totalPrice,
+                          fromCity: widget.fromLocation,
+                          toCity: widget.toLocation,
                         ),
                         disabledContinueButton:
                             selectedPackageIndex == -1 || groupSize == 0,
